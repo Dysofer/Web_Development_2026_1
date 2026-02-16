@@ -5,3 +5,16 @@ if (typeof(Storage) !== "undefined") {
 } else {
   x.innerHTML = "Sorry, no Web storage support!";
 }
+
+function saveToLocalStorage() {
+
+  var name = document.getElementById("nameLocal").value;
+  alert(name);
+
+}
+
+function saveToSessionStorage() {
+
+  var name = document.getElementById("nameSession").value;
+  alert(name);
+}

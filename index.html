@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web development</title>
-    <link rel="icon" type="image/png" href="/src/img/html.png">
-
-    <!-- CSS -->
-
+    <title>Web development 2026 1</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./src/img/search.png">
+    <!-- #1 CSS -->
     <link rel="stylesheet" href="./src/css/main.css">
-    
-    <!-- JS -->
-    <script src="./src/js/main.js" defer></script>
-
-    <!--CSS #3-->
+     <!-- #3 CSS -->
     <style>
-        #myText {
+        #myText{
             color: aqua;
-        
         }
-        .myClass {
+
+        .myClass{
             color: blueviolet;
         }
 
@@ -27,14 +22,29 @@
             padding: 5%;
         }
     </style>
-
 </head>
 <body>
-    <!-- CSS #2 -->
+    <!-- #2 CSS -->
     <h1 style="color: brown;">Web Development</h1>
     <h3 id="myText">Local Storage vs Session storage</h3>
-    <h5 class="myClass myMood">Lil brah</h5>
-
+    <h5 class="myClass myMood">Kdmonteal</h5>
     <div id="result"></div>
+
+    <hr>
+
+    <h2>Local Storage</h2>
+    <span>Nombre(Local Storage):</span>
+    <input type="text" name="nameLocal" id="nameLocal">
+    <button onclick="saveToLocalStorage()"> Guardar </button><br><br>
+    <span>Nombre guardado es: XXX</span>
+    <hr>
+    <h2>Session Storage</h2>
+    <span>Nombre(Session Storage):</span>
+    <input type="text" name="nameSession" id="nameSession">
+    <button onclick="saveToSessionStorage()"> Guardar </button><br><br>
+    <span>Nombre guardado es: XXX</span>
+
+    <!-- JS -->
+    <script src="./src/js/main.js"></script>
 </body>
 </html>
