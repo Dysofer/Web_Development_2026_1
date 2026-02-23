@@ -2,49 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web development 2026 1</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./src/img/search.png">
-    <!-- #1 CSS -->
+    <title>Web Development 2026</title>
     <link rel="stylesheet" href="./src/css/main.css">
-     <!-- #3 CSS -->
-    <style>
-        #myText{
-            color: aqua;
-        }
-
-        .myClass{
-            color: blueviolet;
-        }
-
-        .myMood{
-            padding: 5%;
-        }
-    </style>
 </head>
 <body>
-    <!-- #2 CSS -->
-    <h1 style="color: brown;">Web Development</h1>
-    <h3 id="myText">Local Storage vs Session storage</h3>
-    <h5 class="myClass myMood">Kdmonteal</h5>
+
+    <h1>Web Development</h1>
+    <h3>Local Storage vs Session Storage</h3>
+
     <div id="result"></div>
 
     <hr>
 
+    <!-- LOCAL STORAGE -->
     <h2>Local Storage</h2>
-    <span>Nombre(Local Storage):</span>
-    <input type="text" name="nameLocal" id="nameLocal">
-    <button onclick="saveToLocalStorage()"> Guardar </button><br><br>
-    <span id="localSpan">Nombre guardado es: XXX</span>
-    <hr>
-    <h2>Session Storage</h2>
-    <span>Nombre(Session Storage):</span>
-    <input type="text" name="nameSession" id="nameSession">
-    <button onclick="saveToSessionStorage()"> Guardar </button><br><br>
-    <span id="sessionSpan">Nombre guardado es: XXX</span>
+    <input type="text" id="nameLocal" placeholder="Nombre">
+    <button onclick="saveToLocalStorage()">Guardar Nombre</button>
+    <p id="localSpan">Nombre guardado es: </p>
 
-    <!-- JS -->
+    <hr>
+
+    <!-- SESSION STORAGE -->
+    <h2>Session Storage </h2>
+    <input type="text" id="nameSession" placeholder="Nombre">
+    <button onclick="saveToSessionStorage()">Guardar Nombre</button>
+    <p id="sessionSpan">Nombre guardado es: </p>
+
+    <hr>
+
+    <!-- PELÍCULAS FAVORITAS -->
+    <h2>Películas Favoritas</h2>
+    <input type="text" id="movieInput" placeholder="Nombre de la película">
+    <button onclick="addMovie()">Agregar Película</button>
+
+    <ul id="movieList"></ul>
+
     <script src="./src/js/main.js"></script>
+
 </body>
 </html>
