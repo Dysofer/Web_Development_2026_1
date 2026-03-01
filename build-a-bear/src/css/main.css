@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+    background-color: lightblue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.bear {
+    position: relative;
+}
+
+.accessory {
+    position: absolute;
+    display: none;
+}
+
+#hat {
+    top: 0;
+    left: 50px;
+}
+
+#glasses {
+    top: 80px;
+    left: 50px;
+}
