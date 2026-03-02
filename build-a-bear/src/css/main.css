@@ -86,13 +86,20 @@ body {
   color: #4caf50;
 }
 
-/* Hover personalizado extra */
-button:hover {
+/* Hover personalizado extra para botones normales (excepto los de la barra de navegación) */
+button:not(.navbar .btn):hover {
   transform: scale(1.05);
   transition: 0.2s;
 }
-button:active {
+button:not(.navbar .btn):active {
   transform: scale(0.95);
+}
+
+/* Desactivar animación en botones dentro de la navbar */
+.navbar .btn:hover,
+.navbar .btn:active {
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Responsive */

@@ -66,8 +66,16 @@ function checkout() {
   const total = basePrice + (selectedAccessories.length * accessoryPrice);
   document.getElementById("checkoutTotal").innerText = `💲 ${total}`;
 
+  const modalBody = document.querySelector('#checkoutModal .modal-body');
+  // ensure there is a .bear container (it might have been replaced by confirmPurchase)
+  let checkoutBear = modalBody.querySelector('.bear');
+  if (!checkoutBear) {
+    checkoutBear = document.createElement('div');
+    checkoutBear.className = 'bear position-relative d-inline-block mb-3';
+    modalBody.insertBefore(checkoutBear, modalBody.firstChild);
+  }
+
   // Limpiar accesorios previos
-  const checkoutBear = document.querySelector('#checkoutModal .bear');
   checkoutBear.querySelectorAll('.accessory').forEach(acc => acc.remove());
 
   // Clonar accesorios seleccionados
@@ -104,3 +112,17 @@ function confirmPurchase() {
   // Ocultar el footer (botón)
   modalFooter.style.display = "none";
 }
+// Al cerrar el modal de checkout restauramos la estructura original para poder reutilizarlo
+const checkoutModalEl = document.getElementById('checkoutModal');
+checkoutModalEl.addEventListener('hidden.bs.modal', () => {
+  const modalBody = checkoutModalEl.querySelector('.modal-body');
+  modalBody.innerHTML = `
+    <div class="bear position-relative d-inline-block mb-3">
+      <img id="bearCheckout" src="src/img/teddy.png" class="img-fluid">
+    </div>
+    <h4>Total: <span id="checkoutTotal">💲 20</span></h4>
+    <ul id="checkoutAccessories" class="list-unstyled mt-3"></ul>
+  `;
+  const modalFooter = checkoutModalEl.querySelector('.modal-footer');
+  modalFooter.style.display = '';
+});
