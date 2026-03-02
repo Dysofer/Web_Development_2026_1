@@ -27,24 +27,23 @@ function procesarSolicitud(arr) {
 
 
 // ===============================
-// FUNCIÓN QUE CONECTA CON EL HTML
+// CONECTAR CON EL HTML
 // ===============================
 
 function procesar() {
 
     let nombre = document.getElementById("userName").value;
-    let libro1 = document.getElementById("book1").value;
-    let libro2 = document.getElementById("book2").value;
+    let libro = document.getElementById("book").value;
 
-    // Crear array dinámico
-    let solicitud = [nombre];
+    if (nombre === "" || libro === "") {
+        alert("Debes llenar ambos campos");
+        return;
+    }
 
-    if (libro1 !== "") solicitud.push(libro1);
-    if (libro2 !== "") solicitud.push(libro2);
+    let solicitud = [nombre, libro];
 
     let resultado = procesarSolicitud(solicitud);
 
-    // Mostrar en pantalla
     document.getElementById("resultado").innerText =
         "Resultado: " + JSON.stringify(resultado);
 }
