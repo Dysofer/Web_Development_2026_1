@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Bear (Dilan Solis & Anny Velasco)</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+
+<!-- Navbar azul -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+  <a class="navbar-brand fw-bold" href="#">Build Your Bear 🧸</a>
+</nav>
+
+<!-- Caja de advertencia -->
+<div class="alert alert-warning text-center fw-bold m-0">
+  <i class="bi "></i> Personaliza tu oso y guarda tu diseño antes de salir.
+</div>
+
+<div class="container my-5">
+  <div class="row justify-content-center align-items-center g-5">
+
+    <!-- Oso -->
+    <div class="col-md-6 text-center">
+      <div class="bear position-relative d-inline-block">
+        <img id="bearImage" src="./src/img/teddy.jpg" width="200" class="img-fluid">
+       <img id="hat" class="accessory position-absolute start-50 translate-middle-x" src="src/img/hat.png">
+        <img id="glasses" class="accessory position-absolute start-50 translate-middle-x" src="src/img/gafas.png">
+        <img id="tie" class="accessory position-absolute start-50 translate-middle-x" src="src/img/tie.png">
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="col-md-6 text-center">
+      <div class="d-grid gap-3">
+
+        <button class="btn btn-primary" onclick="addAccessory('hat')">
+          <i class="bi bi-hat"></i> Agregar Sombrero
+        </button>
+
+        <button class="btn btn-info text-white" onclick="addAccessory('glasses')">
+          <i class="bi bi-eyeglasses"></i> Agregar Gafas
+        </button>
+
+        <button class="btn btn-info text-white" onclick="addAccessory('tie')">
+          <i class="bi bi-tie"></i> Agregar Corbata
+        </button>
+
+        <button class="btn btn-success" onclick="saveBear()">
+          <i class="bi bi-save"></i> Guardar Oso
+        </button>
+
+        <button class="btn btn-secondary" onclick="loadBear()">
+          <i class="bi bi-folder2-open"></i> Cargar Oso
+        </button>
+
+        <!-- Botón para mostrar modal -->
+        <button class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#previewModal">
+          <i class="bi bi-eye-fill"></i> Previsualizar Oso
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de previsualización -->
+<div class="modal fade" id="previewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tu oso personalizado 🧸</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="bear position-relative d-inline-block">
+          <img id="bearPreview" src="src/img/teddy.jpg" width="200">
+          <!-- Los accesorios se mostrarán dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Tu JS -->
+<script src="src/js/main.js"></script>
+
+</body>
+</html>
