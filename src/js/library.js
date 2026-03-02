@@ -10,29 +10,41 @@
 // PRÉSTAMO DE LIBROS
 // =======================================
 
+// ===============================
+// FUNCIÓN PRINCIPAL
+// ===============================
+
 function procesarSolicitud(arr) {
 
-    // 1. Sacar el nombre del usuario (primer elemento)
     let nombreUsuario = arr[0];
 
-    // 2. Añadir al inicio del array "Carné de socio"
     arr.unshift("Carné de socio");
 
-    // 3. Añadir al final del array el nombre del usuario
     arr.push(nombreUsuario);
 
-    // 4. Devolver el array modificado
     return arr;
 }
 
 
-// =======================
-// PRUEBA DE LA FUNCIÓN
-// =======================
+// ===============================
+// FUNCIÓN QUE CONECTA CON EL HTML
+// ===============================
 
-let solicitud = ["Dylan", "El principito", "Cien años de soledad"];
+function procesar() {
 
-let resultado = procesarSolicitud(solicitud);
+    let nombre = document.getElementById("userName").value;
+    let libro1 = document.getElementById("book1").value;
+    let libro2 = document.getElementById("book2").value;
 
-console.log("Resultado de la solicitud:");
-console.log(resultado);
+    // Crear array dinámico
+    let solicitud = [nombre];
+
+    if (libro1 !== "") solicitud.push(libro1);
+    if (libro2 !== "") solicitud.push(libro2);
+
+    let resultado = procesarSolicitud(solicitud);
+
+    // Mostrar en pantalla
+    document.getElementById("resultado").innerText =
+        "Resultado: " + JSON.stringify(resultado);
+}
