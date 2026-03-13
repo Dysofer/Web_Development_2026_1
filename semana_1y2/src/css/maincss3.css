@@ -1,0 +1,39 @@
+body {
+
+font-family: Arial, Helvetica, sans-serif;
+background-color: aliceblue;
+margin: 0;
+padding: 0;
+
+}
+
+h1, h2 {
+
+color: chocolate;
+text-align: center;
+
+}
+
+
+
+.selector-avanzado p{
+    color: blue;
+}
+
+.selector-avanzado p.Ejemplo{
+    color: red;
+}
+
+.selector-avanzado p[data-info]{
+
+    color: green;
+}
+
+.pseudo-clases::before{
+    content: "Antes del contenido";
+    color: orange;
+}
+
+.pseudo-clases:nth-child(2){
+    color: purple;
+}
