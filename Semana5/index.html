@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,27 +7,216 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-    <section id="header" class="container">
-            <img src="./images/precio.webp" width="40%" alt="Image - Limited Time Offer - Headline Asset - SPRING PROMO 2026" loading="eager" fetchpriority="auto">
+
+    <!-- HEADER -->
+    <section id="header">
+        <div class="header-content">
+            <img
+                src="./images/precio.webp"
+                class="header-promo-img"
+                alt="Oferta por tiempo limitado – Planes desde COP 8.990 durante 2 meses"
+                loading="eager"
+                fetchpriority="auto"
+            >
             <p class="whitespace-pre-wrap body-medium">Ingresa tu correo para comenzar</p>
+            <form class="header-form" onsubmit="handleSubscribe(event)">
+                <input
+                    type="email"
+                    class="email-input"
+                    placeholder="Dirección de correo electrónico"
+                    aria-label="Correo electrónico"
+                    autocomplete="email"
+                    required
+                >
+                <button type="submit" class="btn-cta">Suscribirse</button>
+            </form>
+            <p class="header-disclaimer">
+                Al continuar, aceptas los <a href="#">Términos y condiciones</a> y la <a href="#">Política de privacidad</a> de Disney+.
+            </p>
+        </div>
+        <div class="marcas-bar">
+            <img src="./images/marcas.webp" alt="Disney · Pixar · Marvel · Star Wars · National Geographic · ESPN · Hulu">
+        </div>
     </section>
-     <section id="espn">
 
+    <!--ESPN / BUNDLE -->
+    <section id="espn">
+        <div class="espn-inner">
+            <div class="espn-text">
+                <span class="eyebrow-chip">Paquete exclusivo</span>
+                <h2>Disney+, ESPN y Hulu.<br>Todo en un plan.</h2>
+                <p>Obtén lo mejor del entretenimiento, el deporte en vivo y series originales con una sola suscripción. Sin permanencia, cancela cuando quieras.</p>
+                <button class="btn-outline">Ver paquetes disponibles</button>
+            </div>
+            <div class="espn-logos">
+                <div class="brand-pill disney-pill">Disney+</div>
+                <span class="plus-sign">+</span>
+                <div class="brand-pill espn-pill">ESPN+</div>
+                <span class="plus-sign">+</span>
+                <div class="brand-pill hulu-pill">Hulu</div>
+            </div>
+        </div>
     </section>
+
+    <hr class="divider">
+
+    <!--  TOP-10 -->
     <section id="top-10">
-
+        <div class="section-header">
+            <h2>🔥 Tendencias ahora</h2>
+            <a href="#" class="see-all">Ver todo</a>
+        </div>
+        <div class="cards-scroll">
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0533,#3b1278)"><span class="card-title-label">Daredevil: Born Again</span></div><span class="rank-num">1</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#0a1628,#1b3a5c)"><span class="card-title-label">Zootopia 2</span></div><span class="rank-num">2</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a1200,#6b4b00)"><span class="card-title-label">The Mandalorian</span></div><span class="rank-num">3</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#001a10,#004d20)"><span class="card-title-label">Toy Story</span></div><span class="rank-num">4</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0808,#5c0d0d)"><span class="card-title-label">Paradise T2</span></div><span class="rank-num">5</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#080a1a,#1a1d4a)"><span class="card-title-label">High Potential</span></div><span class="rank-num">6</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#0d1a0d,#1a3d1a)"><span class="card-title-label">Family Guy</span></div><span class="rank-num">7</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#001a1a,#004040)"><span class="card-title-label">Frozen: Las Notas Olvidadas</span></div><span class="rank-num">8</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a1400,#4a3800)"><span class="card-title-label">Intensamente 2</span></div><span class="rank-num">9</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0d1a,#3d1a3d)"><span class="card-title-label">Moana 2</span></div><span class="rank-num">10</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+        </div>
     </section>
+
+    <hr class="divider">
+
+    <!-- PLANES -->
     <section id="planes">
+        <h2 class="section-title">Elige tu plan</h2>
+        <p class="section-subtitle">Sin permanencia. Cancela cuando quieras.</p>
 
+        <div class="planes-grid">
+
+            <div class="plan-card">
+                <p class="plan-label">Estándar con anuncios</p>
+                <div class="plan-price-row">
+                    <span class="plan-currency">COP</span>
+                    <span class="plan-amount">8.990</span>
+                    <span class="plan-period">/mes</span>
+                </div>
+                <p class="plan-promo-note">por 2 meses, luego COP 17.900/mes*</p>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Acceso a todo el catálogo</li>
+                    <li><span class="check">✓</span> 2 pantallas simultáneas</li>
+                    <li><span class="check">✓</span> Calidad Full HD</li>
+                    <li><span class="check">✓</span> Descargas en dispositivos</li>
+                    <li><span class="check dim">✗</span> <span class="dim-text">Incluye anuncios</span></li>
+                </ul>
+                <button class="btn-plan btn-plan-outline">Suscribirse</button>
+            </div>
+
+            <div class="plan-card plan-featured">
+                <span class="badge-popular">MÁS POPULAR</span>
+                <p class="plan-label">Estándar</p>
+                <div class="plan-price-row">
+                    <span class="plan-currency">COP</span>
+                    <span class="plan-amount">21.900</span>
+                    <span class="plan-period">/mes</span>
+                </div>
+                <p class="plan-promo-note">&nbsp;</p>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Acceso a todo el catálogo</li>
+                    <li><span class="check">✓</span> 2 pantallas simultáneas</li>
+                    <li><span class="check">✓</span> Calidad Full HD</li>
+                    <li><span class="check">✓</span> Descargas ilimitadas</li>
+                    <li><span class="check">✓</span> Sin anuncios</li>
+                </ul>
+                <button class="btn-plan">Suscribirse</button>
+            </div>
+
+            <div class="plan-card">
+                <p class="plan-label">Premium</p>
+                <div class="plan-price-row">
+                    <span class="plan-currency">COP</span>
+                    <span class="plan-amount">29.900</span>
+                    <span class="plan-period">/mes</span>
+                </div>
+                <p class="plan-promo-note">&nbsp;</p>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Acceso a todo el catálogo</li>
+                    <li><span class="check">✓</span> 4 pantallas simultáneas</li>
+                    <li><span class="check">✓</span> Calidad 4K UHD + HDR</li>
+                    <li><span class="check">✓</span> Descargas ilimitadas</li>
+                    <li><span class="check">✓</span> Sin anuncios</li>
+                    <li><span class="check">✓</span> Dolby Atmos</li>
+                </ul>
+                <button class="btn-plan btn-plan-outline">Suscribirse</button>
+            </div>
+
+        </div>
+        <p class="planes-disclaimer">* Oferta por tiempo limitado para nuevos suscriptores. Precio regular aplica tras el período promocional.</p>
     </section>
+
+    <hr class="divider">
+
+    <!--NUEVO CONTENIDO-->
     <section id="nuevoContenido">
-
+        <div class="section-header">
+            <h2>✨ Nuevo en Disney+</h2>
+            <a href="#" class="see-all">Ver todos los estrenos</a>
+        </div>
+        <div class="content-tabs">
+            <button class="tab-btn active" onclick="activateTab(this)">Todo</button>
+            <button class="tab-btn" onclick="activateTab(this)">Películas</button>
+            <button class="tab-btn" onclick="activateTab(this)">Series</button>
+            <button class="tab-btn" onclick="activateTab(this)">Marvel</button>
+            <button class="tab-btn" onclick="activateTab(this)">Star Wars</button>
+            <button class="tab-btn" onclick="activateTab(this)">Pixar</button>
+            <button class="tab-btn" onclick="activateTab(this)">Nat Geo</button>
+        </div>
+        <div class="landscape-grid">
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#10002b,#3c096c)"></div><span class="new-tag">Nuevo</span><div class="lc-overlay"><span class="lc-name">Thunderbolts*</span><button class="lc-play">▶</button></div></div>
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#001233,#023e8a)"></div><span class="new-tag">Estreno</span><div class="lc-overlay"><span class="lc-name">The Acolyte</span><button class="lc-play">▶</button></div></div>
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#1b0000,#6b0000)"></div><div class="lc-overlay"><span class="lc-name">Daredevil: Born Again</span><button class="lc-play">▶</button></div></div>
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#001a10,#004d20)"></div><span class="new-tag">Nuevo</span><div class="lc-overlay"><span class="lc-name">Planet Earth IV</span><button class="lc-play">▶</button></div></div>
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#0a1628,#1b3a5c)"></div><div class="lc-overlay"><span class="lc-name">Zootopia 2</span><button class="lc-play">▶</button></div></div>
+            <div class="landscape-card"><div class="lc-thumb" style="background:linear-gradient(135deg,#1a1200,#5c4200)"></div><span class="new-tag">Pronto</span><div class="lc-overlay"><span class="lc-name">Skeleton Crew T2</span><button class="lc-play">▶</button></div></div>
+        </div>
     </section>
+
+    <hr class="divider">
+
+    <!--CARACTERÍSTICAS -->
     <section id="caracteristicas">
-
+        <h2 class="section-title">Todo lo que incluye Disney+</h2>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon">🎬</div><h3>Miles de títulos</h3><p>Películas, series y documentales de Disney, Pixar, Marvel, Star Wars y National Geographic.</p></div>
+            <div class="feature-card"><div class="feature-icon">📱</div><h3>Todos tus dispositivos</h3><p>TV, celular, tablet y computadora. Empieza en un dispositivo y continúa en otro sin perder el hilo.</p></div>
+            <div class="feature-card"><div class="feature-icon">⬇️</div><h3>Descarga y mira offline</h3><p>Descarga tus títulos favoritos y disfrútalos sin conexión a internet, cuando y donde quieras.</p></div>
+            <div class="feature-card"><div class="feature-icon">🎭</div><h3>Perfiles personalizados</h3><p>Hasta 7 perfiles para que cada miembro de la familia tenga sus propias recomendaciones.</p></div>
+            <div class="feature-card"><div class="feature-icon">🎧</div><h3>4K, HDR y Dolby Atmos</h3><p>La mejor calidad de imagen y sonido en los títulos compatibles del catálogo.</p></div>
+            <div class="feature-card"><div class="feature-icon">🔒</div><h3>Control parental</h3><p>Configura restricciones de contenido por perfil para que los niños solo vean lo apropiado.</p></div>
+        </div>
     </section>
-    <section id="footer">
 
-    </section>
+    <hr class="divider">
+
+    <!--FOOTER -->
+    <footer id="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <p class="footer-logo">Disney+</p>
+                <p class="footer-brand-desc">El hogar de Disney, Pixar, Marvel,<br>Star Wars y National Geographic.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
+                    <a href="#" class="social-icon" aria-label="Instagram">◎</a>
+                    <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                    <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Explorar</h4><ul><li><a href="#">Inicio</a></li><li><a href="#">Series</a></li><li><a href="#">Películas</a></li><li><a href="#">Originales</a></li><li><a href="#">Deportes</a></li></ul></div>
+            <div class="footer-col"><h4>Marcas</h4><ul><li><a href="#">Disney</a></li><li><a href="#">Pixar</a></li><li><a href="#">Marvel</a></li><li><a href="#">Star Wars</a></li><li><a href="#">National Geographic</a></li></ul></div>
+            <div class="footer-col"><h4>Ayuda</h4><ul><li><a href="#">Centro de ayuda</a></li><li><a href="#">Dispositivos compatibles</a></li><li><a href="#">Descargas</a></li><li><a href="#">Accesibilidad</a></li><li><a href="#">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Términos de uso</a></li><li><a href="#">Política de privacidad</a></li><li><a href="#">Cookies</a></li><li><a href="#">Avisos legales</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Disney. Todos los derechos reservados.</p>
+            <button class="lang-btn">🌐 Español</button>
+        </div>
+    </footer>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
