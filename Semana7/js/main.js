@@ -7,7 +7,7 @@
             canvas.width = 1920;
             canvas.height = 1080;
 
-            const frameCount = 145; // Cantidad total de imágenes en la secuencia
+            const frameCount = 742; // Cantidad total de imágenes en la secuencia
             
             // Función para generar la URL de cada imagen (0001.jpg, 0002.jpg, etc.)
             /*const currentFrame = index => (
@@ -15,7 +15,7 @@
             );*/
 
             const currentFrame = index => (
-                `http://127.0.0.1:5500/Semana7/Secuencia/Secuencia%201${(index + 1).toString().padStart(3, '0')}.png`
+                `http://127.0.0.1:5500/Semana7/Secuencia/${(index + 1).toString().padStart(4, '0')}.png`
             );
 
             //http://127.0.0.1:5500/src/views/Semana6/secuencia/Comp%201_00120.png
