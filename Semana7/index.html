@@ -3,116 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Mulan | Disney+</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/ralph.css">
-
-<script type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
-
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 </head>
-
 <body>
 
+<!-- HEADER -->
 <header class="header">
-<img src="./img/disney_logo.webp" alt="Disney+ Logo">
+    <img src="./img/disney_logo.webp" alt="Disney+ Logo">
+    <nav class="nav">
+        <a href="#scroll-section">Inicio</a>
+        <a href="#model-section">3D</a>
+        <a href="#benefits">Beneficios</a>
+        <a href="#cta-section" class="nav-btn">Suscríbete</a>
+    </nav>
 </header>
 
-<section class="scroll-section">
+<!-- ═══════════════════════════════════════════════════
+     SCROLL SECTION
+     Estructura clave:
+     scroll-section (position:relative, height:400vh)
+       └── canvas-container (position:sticky, height:100vh)
+               ├── canvas  (fondo, z-index:0)
+               ├── vignette (encima del canvas, z-index:1)
+               └── text-overlay (encima de todo, z-index:10)
+                       └── steps con cards
 
-<div class="canvas-container">
-<canvas id="product-canvas"></canvas>
-</div>
+     El text-overlay está DENTRO del canvas-container sticky
+     → así las cards siempre flotan sobre el canvas visible
+════════════════════════════════════════════════════ -->
+<section class="scroll-section" id="scroll-section">
 
-<div class="text-overlay">
+    <div class="canvas-container">
 
-<div class="step">
-<div class="card">
-<h2>¡Descubre tu poder interior!</h2>
-<p>Mulan - La leyenda cobra vida.</p>
-</div>
-</div>
+        <!-- FONDO: la secuencia se dibuja aquí -->
+        <canvas id="product-canvas"></canvas>
 
-<div class="step">
-<div class="card">
-<h2>Guerrera. Leyenda. Inspiración.</h2>
-<p>Una historia que te transformará.</p>
-</div>
-</div>
+        <!-- Vignette sutil encima del canvas -->
+        <div class="vignette"></div>
 
-<div class="step">
-<div class="card">
-<h2>Mulan Exclusiva</h2>
-<p>Contenido disponible solo para suscriptores.</p>
-</div>
-</div>
+        <!-- Cards de texto: flotan sobre el canvas -->
+        <div class="text-overlay">
 
-<div class="step">
-<div class="card">
-<h2>Streaming Sin Límites</h2>
-<p>Mira cuando quieras, donde quieras.</p>
-</div>
-</div>
+            <div class="step">
+                <div class="card">
+                    <span class="card-tag">La Historia</span>
+                    <h2>¡Descubre tu<br>poder interior!</h2>
+                    <p>Mulan — La leyenda cobra vida.</p>
+                </div>
+            </div>
 
-</div>
-</section>
+            <div class="step step--left">
+                <div class="card">
+                    <span class="card-tag">Guerrera · Leyenda · Inspiración</span>
+                    <h2>Una historia que<br>te transformará</h2>
+                    <p>Valentía, honor y destino en una sola historia épica.</p>
+                </div>
+            </div>
 
+            <div class="step step--right">
+                <div class="card">
+                    <span class="card-tag">Solo en Disney+</span>
+                    <h2>Mulan<br>Exclusiva</h2>
+                    <p>Contenido disponible solo para suscriptores.</p>
+                </div>
+            </div>
 
-<section class="model-section">
+            <div class="step">
+                <div class="card">
+                    <span class="card-tag">Sin Interrupciones</span>
+                    <h2>Streaming<br>Sin Límites</h2>
+                    <p>Mira cuando quieras, donde quieras.</p>
+                </div>
+            </div>
 
-<h2>Explora a Mulan en 3D</h2>
+        </div><!-- /text-overlay -->
 
-<model-viewer
-src="./modelo/mulan2.glb"
-alt="Modelo 3D de Mulan"
-
-camera-controls
-auto-rotate
-
-autoplay
-animation-name="*"
-animation-loop
-
-camera-orbit="0deg 75deg 10m"
-camera-target="0m 6m 0m"
-
-shadow-intensity="1">
-</model-viewer>
-</section>
-
-
-<section class="benefits">
-
-<div class="benefit">
-<h3>Descarga y Disfruta</h3>
-<p>Ve offline en cualquier momento</p>
-</div>
-
-<div class="benefit">
-<h3>Perfiles Personalizados</h3>
-<p>Experiencia única para cada miembro</p>
-</div>
-
-<div class="benefit">
-<h3>Calidad 4K</h3>
-<p>Vive cada momento en ultra definición</p>
-</div>
+    </div><!-- /canvas-container -->
 
 </section>
 
-
-<section class="cta-section">
-
-<h2>¡Comienza Tu Aventura!</h2>
-<p>Suscríbete hoy y obtén acceso total</p>
-
-<button>Suscribirse</button>
-
+<!-- MODEL VIEWER 3D -->
+<section class="model-section" id="model-section">
+    <div class="model-text" data-scroll>
+        <span class="section-tag">Universo Interactivo</span>
+        <h2>Explora a Mulan<br><em>en 3D</em></h2>
+        <p>Gira, observa y descubre cada detalle del personaje. Disponible también en Realidad Aumentada.</p>
+    </div>
+    <div class="model-viewer-wrap" data-scroll data-delay="150">
+        <model-viewer
+            src="./modelo/mulan2.glb"
+            alt="Modelo 3D de Mulan"
+            camera-controls
+            auto-rotate
+            autoplay
+            animation-name="*"
+            camera-orbit="0deg 75deg 10m"
+            camera-target="0m 6m 0m"
+            shadow-intensity="1">
+        </model-viewer>
+    </div>
 </section>
 
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+    <div class="benefits-header" data-scroll>
+        <span class="section-tag">¿Por qué Disney+?</span>
+        <h2>Todo lo que necesitas<br><em>en un solo lugar</em></h2>
+    </div>
+    <div class="benefits-grid">
+        <div class="benefit" data-scroll data-delay="0">
+            <div class="benefit-icon">⬇</div>
+            <h3>Descarga y Disfruta</h3>
+            <p>Ve offline en cualquier momento, sin necesitar conexión.</p>
+        </div>
+        <div class="benefit" data-scroll data-delay="120">
+            <div class="benefit-icon">👤</div>
+            <h3>Perfiles Personalizados</h3>
+            <p>Experiencia única e individualizada para cada miembro.</p>
+        </div>
+        <div class="benefit" data-scroll data-delay="240">
+            <div class="benefit-icon">◈</div>
+            <h3>Calidad 4K</h3>
+            <p>Vive cada momento en ultra definición con HDR Dolby Vision.</p>
+        </div>
+        <div class="benefit" data-scroll data-delay="360">
+            <div class="benefit-icon">🎬</div>
+            <h3>Clásicos Disney</h3>
+            <p>Toda la magia de décadas de historia en un solo lugar.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta-section">
+    <div class="cta-inner" data-scroll>
+        <span class="section-tag">Comienza Hoy</span>
+        <h2>¡Comienza Tu<br>Aventura!</h2>
+        <p>Suscríbete hoy y obtén acceso total.<br>Prueba gratis por 7 días.</p>
+        <div class="cta-price">Desde <strong>$7.99</strong>/mes</div>
+        <button class="cta-btn">Suscribirse Ahora</button>
+        <p class="cta-note">Sin compromisos · Cancela cuando quieras</p>
+    </div>
+</section>
 
 <script src="./js/main.js"></script>
-
 </body>
 </html>
