@@ -11,41 +11,29 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ═══════════ HEADER ═══════════ -->
 <header class="header">
     <img src="./img/disney_logo.webp" alt="Disney+ Logo">
-    <nav class="nav">
+
+    <!-- Hamburger: solo visible en móvil -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="mainNav">
         <a href="#scroll-section">Inicio</a>
         <a href="#model-section">3D</a>
+        <a href="#trailer-section">Tráiler</a>
         <a href="#benefits">Beneficios</a>
         <a href="#cta-section" class="nav-btn">Suscríbete</a>
     </nav>
 </header>
 
-<!-- ═══════════════════════════════════════════════════
-     SCROLL SECTION
-     Estructura clave:
-     scroll-section (position:relative, height:400vh)
-       └── canvas-container (position:sticky, height:100vh)
-               ├── canvas  (fondo, z-index:0)
-               ├── vignette (encima del canvas, z-index:1)
-               └── text-overlay (encima de todo, z-index:10)
-                       └── steps con cards
-
-     El text-overlay está DENTRO del canvas-container sticky
-     → así las cards siempre flotan sobre el canvas visible
-════════════════════════════════════════════════════ -->
+<!-- ═══════════ SCROLL + SECUENCIA ═══════════ -->
 <section class="scroll-section" id="scroll-section">
-
     <div class="canvas-container">
-
-        <!-- FONDO: la secuencia se dibuja aquí -->
         <canvas id="product-canvas"></canvas>
-
-        <!-- Vignette sutil encima del canvas -->
         <div class="vignette"></div>
-
-        <!-- Cards de texto: flotan sobre el canvas -->
         <div class="text-overlay">
 
             <div class="step">
@@ -80,35 +68,76 @@
                 </div>
             </div>
 
-        </div><!-- /text-overlay -->
-
-    </div><!-- /canvas-container -->
-
+        </div>
+    </div>
 </section>
 
-<!-- MODEL VIEWER 3D -->
+<!-- ═══════════ DOS MODELOS 3D ═══════════ -->
 <section class="model-section" id="model-section">
+
+    <!-- Texto izquierdo -->
     <div class="model-text" data-scroll>
         <span class="section-tag">Universo Interactivo</span>
         <h2>Explora a Mulan<br><em>en 3D</em></h2>
-        <p>Gira, observa y descubre cada detalle del personaje. Disponible también en Realidad Aumentada.</p>
+        <p>Gira, observa y descubre cada detalle del personaje. Disponible también en Realidad Aumentada desde tu móvil.</p>
     </div>
-    <div class="model-viewer-wrap" data-scroll data-delay="150">
-        <model-viewer
-            src="./modelo/mulan2.glb"
-            alt="Modelo 3D de Mulan"
-            camera-controls
-            auto-rotate
-            autoplay
-            animation-name="*"
-            camera-orbit="0deg 75deg 10m"
-            camera-target="0m 6m 0m"
-            shadow-intensity="1">
-        </model-viewer>
+
+    <!-- Contenedor de los dos modelos -->
+    <div class="models-pair">
+
+        <!-- Modelo 1: mulan2.glb — con animación float -->
+        <div class="model-viewer-wrap" data-scroll data-delay="100">
+            <div class="model-label">Mulan</div>
+            <model-viewer
+                src="./modelo/mulan2.glb"
+                alt="Modelo 3D de Mulan traje de batalla"
+                camera-controls
+                auto-rotate
+                autoplay
+                animation-name="*"
+                camera-orbit="0deg 75deg 10m"
+                camera-target="0m 6m 0m"
+                shadow-intensity="1">
+            </model-viewer>
+        </div>
+
+        <!-- Modelo 2: mulan.glb — sin animación float, diferente ángulo -->
+        <div class="model-viewer-wrap model-viewer-wrap--alt" data-scroll data-delay="220">
+            <div class="model-label">Mulan</div>
+            <model-viewer
+                src="./modelo/mulan.glb"
+                alt="Modelo 3D de Mulan traje imperial"
+                camera-controls
+                auto-rotate
+                camera-orbit="0deg 75deg 10m"
+                camera-target="0m 10m 7m"
+                shadow-intensity="1">
+            </model-viewer>
+        </div>
+
     </div>
 </section>
 
-<!-- BENEFITS -->
+<!-- ═══════════ TRÁILER ═══════════ -->
+<section class="trailer-section" id="trailer-section">
+    <div class="trailer-header" data-scroll>
+        <span class="section-tag">Tráiler Oficial</span>
+        <h2>Mulan — <em>Official Trailer</em></h2>
+        <p>Una aventura épica que desafía los límites del honor y el destino.</p>
+    </div>
+
+    <div class="trailer-wrap" data-scroll data-delay="150">
+        <!-- Tráiler oficial de Mulan (Disney+) -->
+        <iframe
+            src="https://www.youtube.com/embed/HKH7_n425Ss?si=Oy-wjaPr0Rj9Ipwx"
+            title="Mulan Official Trailer — Disney+"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<!-- ═══════════ BENEFITS ═══════════ -->
 <section class="benefits" id="benefits">
     <div class="benefits-header" data-scroll>
         <span class="section-tag">¿Por qué Disney+?</span>
@@ -138,7 +167,7 @@
     </div>
 </section>
 
-<!-- CTA -->
+<!-- ═══════════ CTA ═══════════ -->
 <section class="cta-section" id="cta-section">
     <div class="cta-inner" data-scroll>
         <span class="section-tag">Comienza Hoy</span>

@@ -1,20 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ─────────────────────────────────────────────────
-       CANVAS — SECUENCIA DE IMÁGENES COMO FONDO
+    /* ──────────────────────────────────────────────────
+       1. CANVAS — SECUENCIA DE IMÁGENES COMO FONDO
+    ────────────────────────────────────────────────── */
+    const canvas = document.getElementById('product-canvas');
+    const ctx    = canvas.getContext('2d');
 
-       Cómo funciona:
-       1. El canvas tiene position:absolute dentro del sticky
-          → ya cubre el 100% del viewport
-       2. Las imágenes se precargan en orden
-       3. drawCover() escala la imagen para cubrir TODO
-          el canvas (como background-size: cover)
-       4. Al scrollear se calcula qué frame mostrar
-    ───────────────────────────────────────────────── */
-    const canvas  = document.getElementById('product-canvas');
-    const ctx     = canvas.getContext('2d');
-
-    // Tamaño del canvas = viewport (se actualiza al resize)
     function setSize() {
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -22,16 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setSize();
     window.addEventListener('resize', () => {
         setSize();
-        // Redibujar frame actual tras resize
         const img = images[lastFrame];
         if (img && img.complete && img.naturalWidth > 0) drawCover(img);
     });
 
-    // ── Configuración ──────────────────────────────
     const frameCount = 742;
     const path = i => `./Secuencia/${String(i + 1).padStart(4, '0')}.png`;
 
-    // Precargar todas las imágenes
     const images = [];
     let loadedCount = 0;
 
@@ -39,30 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = new Image();
         img.onload = () => {
             loadedCount++;
-            // Dibujar en cuanto llegue el primer frame
             if (loadedCount === 1) drawCover(img);
         };
         img.src = path(i);
         images.push(img);
     }
 
-    // ── drawCover: escala la imagen tipo "cover" ───
     function drawCover(img) {
         if (!img || !img.naturalWidth) return;
-        const sx = canvas.width  / img.naturalWidth;
-        const sy = canvas.height / img.naturalHeight;
-        const s  = Math.max(sx, sy);          // cover: el lado mayor manda
-        const w  = img.naturalWidth  * s;
-        const h  = img.naturalHeight * s;
-        const x  = (canvas.width  - w) / 2;  // centrar horizontalmente
-        const y  = (canvas.height - h) / 2;  // centrar verticalmente
+        const s = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+        const w = img.naturalWidth  * s;
+        const h = img.naturalHeight * s;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, x, y, w, h);
+        ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
     }
 
-    // ── Scroll → frame ────────────────────────────
     let lastFrame = 0;
-
     window.addEventListener('scroll', () => {
         const scrollTop  = window.scrollY;
         const maxScroll  = document.documentElement.scrollHeight - window.innerHeight;
@@ -74,39 +54,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
         requestAnimationFrame(() => {
             const img = images[frameIndex];
-            if (img && img.complete && img.naturalWidth > 0) {
-                drawCover(img);
-            }
-            // Si el frame aún no cargó, simplemente se queda el frame anterior
+            if (img && img.complete && img.naturalWidth > 0) drawCover(img);
         });
-    });
+    }, { passive: true });
 
-    /* ─────────────────────────────────────────────────
-       CARDS DEL HERO — IntersectionObserver
-       Aparecen al 30% de visibilidad y desaparecen al salir
-    ───────────────────────────────────────────────── */
+    /* ──────────────────────────────────────────────────
+       2. CARDS HERO — aparecen/desaparecen al scrollear
+    ────────────────────────────────────────────────── */
     const cardObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            entry.target.classList.toggle('visible', entry.isIntersecting);
-        });
+        entries.forEach(e => e.target.classList.toggle('visible', e.isIntersecting));
     }, { threshold: 0.3 });
 
     document.querySelectorAll('.card').forEach(c => cardObserver.observe(c));
 
-    /* ─────────────────────────────────────────────────
-       SECCIONES INFERIORES — [data-scroll]
-       Aparecen una sola vez al entrar al viewport
-       data-delay="ms" para retraso escalonado
-    ───────────────────────────────────────────────── */
+    /* ──────────────────────────────────────────────────
+       3. SECCIONES INFERIORES — aparecen una vez
+          al entrar al viewport (data-scroll + data-delay)
+    ────────────────────────────────────────────────── */
     const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const delay = parseInt(entry.target.dataset.delay || '0', 10);
-            setTimeout(() => entry.target.classList.add('in-view'), delay);
-            revealObserver.unobserve(entry.target);
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const delay = parseInt(e.target.dataset.delay || '0', 10);
+            setTimeout(() => e.target.classList.add('in-view'), delay);
+            revealObserver.unobserve(e.target);
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('[data-scroll]').forEach(el => revealObserver.observe(el));
+
+    /* ──────────────────────────────────────────────────
+       4. HAMBURGER MENU — responsive móvil
+    ────────────────────────────────────────────────── */
+    const toggle = document.getElementById('menuToggle');
+    const nav    = document.getElementById('mainNav');
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            nav.classList.toggle('open');
+        });
+
+        // Cerrar al hacer clic en un link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.classList.remove('open');
+                nav.classList.remove('open');
+            });
+        });
+    }
 
 });
