@@ -15,7 +15,7 @@
             );*/
 
             const currentFrame = index => (
-                `http://127.0.0.1:5500/src/views/Semana6/secuencia/Comp%201_0${(index + 1).toString().padStart(4, '0')}.png`
+                `http://127.0.0.1:5500/Semana7/Secuencia/Secuencia%201${(index + 1).toString().padStart(3, '0')}.png`
             );
 
             //http://127.0.0.1:5500/src/views/Semana6/secuencia/Comp%201_00120.png
