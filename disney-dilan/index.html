@@ -8,7 +8,24 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- ── NAVBAR: logo Disney+ fixed arriba izquierda ── -->
+    <header class="site-nav">
+        <a href="#" class="nav-logo">
+            <img src="./img/disney_logo.webp" alt="Disney+ Logo">
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="mainNav">
+            <a href="#espn">Paquetes</a>
+            <a href="#top-10">Tendencias</a>
+            <a href="#planes">Planes</a>
+            <a href="#nuevoContenido">Estrenos</a>
+            <a href="#header" class="nav-cta">Suscríbete</a>
+        </nav>
+    </header>
+
+    <!-- ── HERO ── -->
     <section id="header">
         <div class="header-content">
             <img
@@ -16,7 +33,6 @@
                 class="header-promo-img"
                 alt="Oferta por tiempo limitado – Planes desde COP 8.990 durante 2 meses"
                 loading="eager"
-                fetchpriority="auto"
             >
             <p class="whitespace-pre-wrap body-medium">Ingresa tu correo para comenzar</p>
             <form class="header-form" onsubmit="handleSubscribe(event)">
@@ -39,7 +55,7 @@
         </div>
     </section>
 
-    <!--ESPN / BUNDLE -->
+    <!-- ── ESPN / BUNDLE ── -->
     <section id="espn">
         <div class="espn-inner">
             <div class="espn-text">
@@ -60,35 +76,109 @@
 
     <hr class="divider">
 
-    <!--  TOP-10 -->
+    <!-- ── TOP-10 TENDENCIAS ── -->
     <section id="top-10">
         <div class="section-header">
             <h2>🔥 Tendencias ahora</h2>
             <a href="#" class="see-all">Ver todo</a>
         </div>
         <div class="cards-scroll">
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0533,#3b1278)"><span class="card-title-label">Daredevil: Born Again</span></div><span class="rank-num">1</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#0a1628,#1b3a5c)"><span class="card-title-label">Zootopia 2</span></div><span class="rank-num">2</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a1200,#6b4b00)"><span class="card-title-label">The Mandalorian</span></div><span class="rank-num">3</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#001a10,#004d20)"><span class="card-title-label">Toy Story</span></div><span class="rank-num">4</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0808,#5c0d0d)"><span class="card-title-label">Paradise T2</span></div><span class="rank-num">5</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#080a1a,#1a1d4a)"><span class="card-title-label">High Potential</span></div><span class="rank-num">6</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#0d1a0d,#1a3d1a)"><span class="card-title-label">Family Guy</span></div><span class="rank-num">7</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#001a1a,#004040)"><span class="card-title-label">Frozen: Las Notas Olvidadas</span></div><span class="rank-num">8</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a1400,#4a3800)"><span class="card-title-label">Intensamente 2</span></div><span class="rank-num">9</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
-            <div class="content-card"><div class="card-thumb" style="background:linear-gradient(160deg,#1a0d1a,#3d1a3d)"><span class="card-title-label">Moana 2</span></div><span class="rank-num">10</span><div class="card-hover"><button class="play-btn">▶</button></div></div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#1a0533,#3b1278)">
+                    <span class="card-title-label">Daredevil: Born Again</span>
+                </div>
+                <span class="rank-num">1</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <!-- ══ CARD MULAN — clickeable → subproyecto ══ -->
+            <a href="./Semana7/index.html" class="content-card mulan-card" title="Ver landing de Mulan">
+                <div class="card-thumb mulan-thumb">
+                    <span class="card-title-label">Mulan</span>
+                    <span class="mulan-badge">⚔ Ver experiencia</span>
+                </div>
+                <span class="rank-num">2</span>
+                <div class="card-hover">
+                    <button class="play-btn">▶</button>
+                </div>
+            </a>
+            <!-- ══════════════════════════════════════════ -->
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#1a1200,#6b4b00)">
+                    <span class="card-title-label">The Mandalorian</span>
+                </div>
+                <span class="rank-num">3</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#001a10,#004d20)">
+                    <span class="card-title-label">Toy Story</span>
+                </div>
+                <span class="rank-num">4</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#1a0808,#5c0d0d)">
+                    <span class="card-title-label">Paradise T2</span>
+                </div>
+                <span class="rank-num">5</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#080a1a,#1a1d4a)">
+                    <span class="card-title-label">High Potential</span>
+                </div>
+                <span class="rank-num">6</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#0d1a0d,#1a3d1a)">
+                    <span class="card-title-label">Family Guy</span>
+                </div>
+                <span class="rank-num">7</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#001a1a,#004040)">
+                    <span class="card-title-label">Frozen: Las Notas Olvidadas</span>
+                </div>
+                <span class="rank-num">8</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#1a1400,#4a3800)">
+                    <span class="card-title-label">Intensamente 2</span>
+                </div>
+                <span class="rank-num">9</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-thumb" style="background:linear-gradient(160deg,#1a0d1a,#3d1a3d)">
+                    <span class="card-title-label">Moana 2</span>
+                </div>
+                <span class="rank-num">10</span>
+                <div class="card-hover"><button class="play-btn">▶</button></div>
+            </div>
+
         </div>
     </section>
 
     <hr class="divider">
 
-    <!-- PLANES -->
+    <!-- ── PLANES ── -->
     <section id="planes">
         <h2 class="section-title">Elige tu plan</h2>
         <p class="section-subtitle">Sin permanencia. Cancela cuando quieras.</p>
-
         <div class="planes-grid">
-
             <div class="plan-card">
                 <p class="plan-label">Estándar con anuncios</p>
                 <div class="plan-price-row">
@@ -106,7 +196,6 @@
                 </ul>
                 <button class="btn-plan btn-plan-outline">Suscribirse</button>
             </div>
-
             <div class="plan-card plan-featured">
                 <span class="badge-popular">MÁS POPULAR</span>
                 <p class="plan-label">Estándar</p>
@@ -125,7 +214,6 @@
                 </ul>
                 <button class="btn-plan">Suscribirse</button>
             </div>
-
             <div class="plan-card">
                 <p class="plan-label">Premium</p>
                 <div class="plan-price-row">
@@ -144,14 +232,13 @@
                 </ul>
                 <button class="btn-plan btn-plan-outline">Suscribirse</button>
             </div>
-
         </div>
         <p class="planes-disclaimer">* Oferta por tiempo limitado para nuevos suscriptores. Precio regular aplica tras el período promocional.</p>
     </section>
 
     <hr class="divider">
 
-    <!--NUEVO CONTENIDO-->
+    <!-- ── NUEVO CONTENIDO ── -->
     <section id="nuevoContenido">
         <div class="section-header">
             <h2>✨ Nuevo en Disney+</h2>
@@ -178,7 +265,7 @@
 
     <hr class="divider">
 
-    <!--CARACTERÍSTICAS -->
+    <!-- ── CARACTERÍSTICAS ── -->
     <section id="caracteristicas">
         <h2 class="section-title">Todo lo que incluye Disney+</h2>
         <div class="features-grid">
@@ -193,7 +280,7 @@
 
     <hr class="divider">
 
-    <!--FOOTER -->
+    <!-- ── FOOTER ── -->
     <footer id="footer">
         <div class="footer-inner">
             <div class="footer-brand">

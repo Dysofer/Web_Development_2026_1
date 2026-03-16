@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const frameCount = 742;
+
+    // Ruta relativa a Semana7/index.html → Semana7/Secuencia/
     const path = i => `./Secuencia/${String(i + 1).padStart(4, '0')}.png`;
 
     const images = [];
@@ -68,8 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.card').forEach(c => cardObserver.observe(c));
 
     /* ──────────────────────────────────────────────────
-       3. SECCIONES INFERIORES — aparecen una vez
-          al entrar al viewport (data-scroll + data-delay)
+       3. SECCIONES INFERIORES — data-scroll + data-delay
     ────────────────────────────────────────────────── */
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-scroll]').forEach(el => revealObserver.observe(el));
 
     /* ──────────────────────────────────────────────────
-       4. HAMBURGER MENU — responsive móvil
+       4. HAMBURGER MENU
     ────────────────────────────────────────────────── */
     const toggle = document.getElementById('menuToggle');
     const nav    = document.getElementById('mainNav');
@@ -93,8 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.classList.toggle('open');
             nav.classList.toggle('open');
         });
-
-        // Cerrar al hacer clic en un link
         nav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 toggle.classList.remove('open');

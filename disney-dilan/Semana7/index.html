@@ -11,15 +11,12 @@
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
+<!-- HEADER -->
 <header class="header">
     <img src="./img/disney_logo.webp" alt="Disney+ Logo">
-
-    <!-- Hamburger: solo visible en móvil -->
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
         <span></span><span></span><span></span>
     </button>
-
     <nav class="nav" id="mainNav">
         <a href="#scroll-section">Inicio</a>
         <a href="#model-section">3D</a>
@@ -29,105 +26,130 @@
     </nav>
 </header>
 
-<!-- ═══════════ SCROLL + SECUENCIA ═══════════ -->
+<!--
+    SCROLL SECTION — ESTRUCTURA CLAVE:
+    ┌─ scroll-section (position:relative, height:600vh) ──────────┐
+    │  ├─ canvas-container (position:sticky, height:100vh)         │
+    │  │      ├─ canvas   ← secuencia dibujada aquí (z-index:0)   │
+    │  │      └─ vignette ← oscurece bordes (z-index:1)           │
+    │  │                                                           │
+    │  └─ text-overlay (position:absolute, height:600vh, z-index:10)│
+    │         ├─ step (100vh) → card 1                            │
+    │         ├─ step (100vh) → card 2                            │
+    │         ├─ step (100vh) → card 3                            │
+    │         ├─ step (100vh) → card 4                            │
+    │         ├─ step (100vh) → card 5                            │
+    │         └─ step (100vh) → card 6                            │
+    └─────────────────────────────────────────────────────────────┘
+
+    canvas-container y text-overlay son HERMANOS.
+    canvas-container tiene overflow:hidden → solo afecta al canvas.
+    text-overlay está FUERA de ese overflow y puede tener 600vh.
+    El sticky del canvas-container hace que el canvas permanezca
+    fijo mientras el text-overlay scrollea sobre él.
+-->
 <section class="scroll-section" id="scroll-section">
+
+    <!-- El canvas sticky: fondo que se queda fijo -->
     <div class="canvas-container">
         <canvas id="product-canvas"></canvas>
         <div class="vignette"></div>
-        <div class="text-overlay">
-
-            <div class="step">
-                <div class="card">
-                    <span class="card-tag">La Historia</span>
-                    <h2>¡Descubre tu<br>poder interior!</h2>
-                    <p>Mulan — La leyenda cobra vida.</p>
-                </div>
-            </div>
-
-            <div class="step step--left">
-                <div class="card">
-                    <span class="card-tag">Guerrera · Leyenda · Inspiración</span>
-                    <h2>Una historia que<br>te transformará</h2>
-                    <p>Valentía, honor y destino en una sola historia épica.</p>
-                </div>
-            </div>
-
-            <div class="step step--right">
-                <div class="card">
-                    <span class="card-tag">Solo en Disney+</span>
-                    <h2>Mulan<br>Exclusiva</h2>
-                    <p>Contenido disponible solo para suscriptores.</p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="card">
-                    <span class="card-tag">Sin Interrupciones</span>
-                    <h2>Streaming<br>Sin Límites</h2>
-                    <p>Mira cuando quieras, donde quieras.</p>
-                </div>
-            </div>
-
-        </div>
     </div>
-</section>
 
-<!-- ═══════════ DOS MODELOS 3D ═══════════ -->
+    <!-- Las cards: flotan sobre el canvas, cubren 600vh -->
+    <div class="text-overlay">
+
+        <div class="step">
+            <div class="card">
+                <span class="card-tag">La Historia</span>
+                <h2>¡Descubre tu<br><em>poder interior!</em></h2>
+                <p>Mulan — La leyenda cobra vida en la pantalla grande.</p>
+            </div>
+        </div>
+
+        <div class="step step--left">
+            <div class="card">
+                <span class="card-tag">Guerrera · Leyenda · Inspiración</span>
+                <h2>Una historia que<br><em>te transformará</em></h2>
+                <p>Valentía, honor y destino en una sola historia épica que desafía todos los límites.</p>
+            </div>
+        </div>
+
+        <div class="step step--right">
+            <div class="card">
+                <span class="card-tag">Solo en Disney+</span>
+                <h2>Mulan<br><em>Exclusiva</em></h2>
+                <p>Contenido disponible solo para suscriptores. Acceso inmediato a Mulan y mucho más.</p>
+            </div>
+        </div>
+
+        <div class="step step--left">
+            <div class="card">
+                <span class="card-tag">Sin Interrupciones</span>
+                <h2>Streaming<br><em>Sin Límites</em></h2>
+                <p>Mira cuando quieras, donde quieras. Descarga y disfruta offline en cualquier momento.</p>
+            </div>
+        </div>
+
+        <div class="step step--right">
+            <div class="card">
+                <span class="card-tag">Detrás de Cámaras</span>
+                <h2>Secretos de la<br><em>Producción</em></h2>
+                <p>Accede a contenido exclusivo: detrás de cámaras, entrevistas y magia del rodaje.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="card">
+                <span class="card-tag">Suscríbete Ahora</span>
+                <h2>¡Comienza tu<br><em>Aventura!</em></h2>
+                <p>Prueba gratis por 7 días. Planes desde $7.99/mes. Cancela cuando quieras.</p>
+            </div>
+        </div>
+
+    </div><!-- /text-overlay -->
+
+</section><!-- /scroll-section -->
+
+<!-- DOS MODELOS 3D -->
 <section class="model-section" id="model-section">
-
-    <!-- Texto izquierdo -->
     <div class="model-text" data-scroll>
         <span class="section-tag">Universo Interactivo</span>
         <h2>Explora a Mulan<br><em>en 3D</em></h2>
         <p>Gira, observa y descubre cada detalle del personaje. Disponible también en Realidad Aumentada desde tu móvil.</p>
     </div>
-
-    <!-- Contenedor de los dos modelos -->
     <div class="models-pair">
-
-        <!-- Modelo 1: mulan2.glb — con animación float -->
         <div class="model-viewer-wrap" data-scroll data-delay="100">
             <div class="model-label">Mulan</div>
             <model-viewer
                 src="./modelo/mulan2.glb"
                 alt="Modelo 3D de Mulan traje de batalla"
-                camera-controls
-                auto-rotate
-                autoplay
-                animation-name="*"
-                camera-orbit="0deg 75deg 10m"
-                camera-target="0m 6m 0m"
+                camera-controls auto-rotate autoplay animation-name="*"
+                camera-orbit="0deg 75deg 10m" camera-target="0m 6m 0m"
                 shadow-intensity="1">
             </model-viewer>
         </div>
-
-        <!-- Modelo 2: mulan.glb — sin animación float, diferente ángulo -->
         <div class="model-viewer-wrap model-viewer-wrap--alt" data-scroll data-delay="220">
             <div class="model-label">Mulan</div>
             <model-viewer
                 src="./modelo/mulan.glb"
                 alt="Modelo 3D de Mulan traje imperial"
-                camera-controls
-                auto-rotate
-                camera-orbit="0deg 75deg 10m"
-                camera-target="0m 10m 7m"
+                camera-controls auto-rotate
+                camera-orbit="0deg 75deg 10m" camera-target="0m 10m 7m"
                 shadow-intensity="1">
             </model-viewer>
         </div>
-
     </div>
 </section>
 
-<!-- ═══════════ TRÁILER ═══════════ -->
+<!-- TRÁILER -->
 <section class="trailer-section" id="trailer-section">
     <div class="trailer-header" data-scroll>
         <span class="section-tag">Tráiler Oficial</span>
         <h2>Mulan — <em>Official Trailer</em></h2>
         <p>Una aventura épica que desafía los límites del honor y el destino.</p>
     </div>
-
     <div class="trailer-wrap" data-scroll data-delay="150">
-        <!-- Tráiler oficial de Mulan (Disney+) -->
         <iframe
             src="https://www.youtube.com/embed/HKH7_n425Ss?si=Oy-wjaPr0Rj9Ipwx"
             title="Mulan Official Trailer — Disney+"
@@ -137,7 +159,7 @@
     </div>
 </section>
 
-<!-- ═══════════ BENEFITS ═══════════ -->
+<!-- BENEFITS -->
 <section class="benefits" id="benefits">
     <div class="benefits-header" data-scroll>
         <span class="section-tag">¿Por qué Disney+?</span>
@@ -167,7 +189,7 @@
     </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
+<!-- CTA -->
 <section class="cta-section" id="cta-section">
     <div class="cta-inner" data-scroll>
         <span class="section-tag">Comienza Hoy</span>
