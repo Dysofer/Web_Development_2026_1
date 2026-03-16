@@ -1,55 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mulan </title>
-    <link rel="stylesheet" href="./css/ralph.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mulan | Disney+</title>
+
+<link rel="stylesheet" href="./css/ralph.css">
+
+<script type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+
 </head>
+
 <body>
-    <div class="scroll-container">
-        <div class="canvas-container">
-            <canvas id="product-canvas"></canvas>
-        </div>
-        <model-viewer id="product-viewer"
-            src="./modelo/mulan2.glb"
-            alt="Modelo 3D de Mulan"
-            auto-rotate
-            camera-controls
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            style="width: 100%; height: 100%;">
 
-        </model-viewer>
+<header class="header">
+<img src="./img/disney_logo.webp" alt="Disney+ Logo">
+</header>
 
-        <div class="text-overlay">
-            <div class="step">
-                <div class="card">
-                    <h2>Magia Pura</h2>
-                    <p>Una integración perfecta de componentes diseñada para el rendimiento extremo.</p>
-                </div>
-            </div>
-            <div class="step" style="justify-content: flex-start;">
-                <div class="card">
-                    <h2>Ingeniería Interna</h2>
-                    <p>Cada milímetro cúbico ha sido optimizado para alojar nuestro chip de última generación.</p>
-                </div>
-            </div>
-            <div class="step" style="justify-content: flex-end;">
-                <div class="card">
-                    <h2>Diseño Acústico</h2>
-                    <p>Cámaras de resonancia alineadas con precisión láser para un sonido envolvente.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="card">
-                    <h2>El Futuro, Hoy.</h2>
-                    <p>Haz el recorrido de nuevo y observa la fluidez de cada componente.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="./js/main.js"></script>
+<section class="scroll-section">
+
+<div class="canvas-container">
+<canvas id="product-canvas"></canvas>
+</div>
+
+<div class="text-overlay">
+
+<div class="step">
+<div class="card">
+<h2>¡Descubre tu poder interior!</h2>
+<p>Mulan - La leyenda cobra vida.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="card">
+<h2>Guerrera. Leyenda. Inspiración.</h2>
+<p>Una historia que te transformará.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="card">
+<h2>Mulan Exclusiva</h2>
+<p>Contenido disponible solo para suscriptores.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="card">
+<h2>Streaming Sin Límites</h2>
+<p>Mira cuando quieras, donde quieras.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section class="model-section">
+
+<h2>Explora a Mulan en 3D</h2>
+
+<model-viewer
+src="./modelo/mulan2.glb"
+alt="Modelo 3D de Mulan"
+
+camera-controls
+auto-rotate
+
+autoplay
+animation-name="*"
+animation-loop
+
+camera-orbit="0deg 75deg 10m"
+camera-target="0m 6m 0m"
+
+shadow-intensity="1">
+</model-viewer>
+</section>
+
+
+<section class="benefits">
+
+<div class="benefit">
+<h3>Descarga y Disfruta</h3>
+<p>Ve offline en cualquier momento</p>
+</div>
+
+<div class="benefit">
+<h3>Perfiles Personalizados</h3>
+<p>Experiencia única para cada miembro</p>
+</div>
+
+<div class="benefit">
+<h3>Calidad 4K</h3>
+<p>Vive cada momento en ultra definición</p>
+</div>
+
+</section>
+
+
+<section class="cta-section">
+
+<h2>¡Comienza Tu Aventura!</h2>
+<p>Suscríbete hoy y obtén acceso total</p>
+
+<button>Suscribirse</button>
+
+</section>
+
+
+<script src="./js/main.js"></script>
+
 </body>
 </html>

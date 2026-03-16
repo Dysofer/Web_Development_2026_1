@@ -1,95 +1,191 @@
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-        }
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#000;
+color:white;
+overflow-x:hidden;
+}
 
-        /* Contenedor que da la altura total a la página para poder hacer scroll */
-        .scroll-container {
-            position: relative;
-            /* 400vh significa que tendremos 4 pantallas completas de recorrido de scroll */
-            height: 400vh; 
-        }
+/* DISNEY HEADER */
 
-        /* 1. EL DESPIECE (CANVAS STICKY) */
-        .canvas-container {
-            position: sticky;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+.header{
+position:fixed;
+top:20px;
+left:40px;
+z-index:100;
+}
 
-        canvas {
-            /* Asegura que el canvas cubra la pantalla manteniendo su proporción */
-            max-width: 100vw;
-            max-height: 100vh;
-            object-fit: contain;
-        }
+.header img{
+width:120px;
+}
 
-        /* Contenedor de los textos, absoluto sobre el canvas */
-        .text-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none; /* Deja que el scroll pase a través de la capa */
-        }
+/* SCROLL SECTION */
 
-        .step {
-            height: 100vh; /* Cada paso ocupa una pantalla de alto */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 10%;
-        }
+.scroll-section{
+height:400vh;
+position:relative;
+}
 
-        /* 2. EL GLASSMORPHISM */
-        .card {
-            background: rgba(30, 30, 30, 0.4); /* Fondo muy transparente */
-            backdrop-filter: blur(15px); /* El truco del vidrio esmerilado */
-            -webkit-backdrop-filter: blur(15px); /* Soporte para Safari */
-            padding: 3rem;
-            border-radius: 24px;
-            max-width: 450px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            
-            /* 3. TRANSICIONES DE OPACIDAD */
-            opacity: 0; /* Oculto por defecto */
-            transform: translateY(40px); /* Ligeramente desplazado hacia abajo */
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+.canvas-container{
+position:sticky;
+top:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-        /* Clase dinámica que agregaremos con JavaScript cuando la tarjeta entre en pantalla */
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+canvas{
+max-width:100vw;
+max-height:100vh;
+}
 
-        .card h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            letter-spacing: -0.05em;
-        }
+/* TEXT */
 
-        .card p {
-            font-size: 1.2rem;
-            line-height: 1.5;
-            color: #a1a1a6; /* Gris al estilo Apple */
-        }
+.text-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.step{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+.card{
+
+background:rgba(30,30,30,0.4);
+backdrop-filter:blur(15px);
+
+padding:40px;
+border-radius:20px;
+
+max-width:400px;
+
+opacity:0;
+transform:translateY(40px);
+
+transition:0.8s;
+}
+
+.card.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.card h2{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.card p{
+color:#aaa;
+}
+
+/* MODEL SECTION */
+
+.model-section{
+
+height:100vh;
+
+display:flex;
+flex-direction:column;
+
+justify-content:center;
+align-items:center;
+
+background:radial-gradient(circle,#021b3a,#000);
+}
+
+.model-section h2{
+font-size:40px;
+margin-bottom:30px;
+}
+
+model-viewer{
+
+width:400px;
+height:350px;
+
+animation:float 6s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+100%{transform:translateY(0)}
+
+}
+
+/* BENEFITS */
+
+.benefits{
+
+display:flex;
+justify-content:center;
+gap:40px;
+
+padding:80px;
+
+background:#020d1a;
+}
+
+.benefit{
+max-width:250px;
+text-align:center;
+}
+
+.benefit h3{
+margin-bottom:10px;
+}
+
+/* CTA */
+
+.cta-section{
+
+text-align:center;
+padding:100px;
+
+background:#000;
+}
+
+.cta-section button{
+
+margin-top:20px;
+
+padding:15px 40px;
+
+background:#0063e5;
+
+border:none;
+
+border-radius:30px;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:0.3s;
+}
+
+.cta-section button:hover{
+
+background:#0483ff;
+transform:scale(1.05);
+
+}

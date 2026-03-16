@@ -1,81 +1,73 @@
- document.addEventListener('DOMContentLoaded', () => {
-            // --- CONFIGURACIÓN DEL CANVAS Y LA SECUENCIA DE IMÁGENES ---
-            const canvas = document.getElementById('product-canvas');
-            const context = canvas.getContext('2d');
-            
-            // Resolución original de los fotogramas (ejemplo: AirPods tutorial sequence)
-            canvas.width = 1920;
-            canvas.height = 1080;
+document.addEventListener('DOMContentLoaded', () => {
 
-            const frameCount = 742; // Cantidad total de imágenes en la secuencia
-            
-            // Función para generar la URL de cada imagen (0001.jpg, 0002.jpg, etc.)
-            /*const currentFrame = index => (
-                `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${(index + 1).toString().padStart(4, '0')}.jpg`
-            );*/
+const canvas = document.getElementById('product-canvas');
+const context = canvas.getContext('2d');
 
-            const currentFrame = index => (
-                `http://127.0.0.1:5500/Semana7/Secuencia/${(index + 1).toString().padStart(4, '0')}.png`
-            );
+canvas.width = 1920;
+canvas.height = 1080;
 
-            //http://127.0.0.1:5500/src/views/Semana6/secuencia/Comp%201_00120.png
+const frameCount = 742;
 
-            // Precargar todas las imágenes en memoria para evitar parpadeos
-            const images = [];
-            for (let i = 0; i < frameCount; i++) {
-                const img = new Image();
-                img.src = currentFrame(i);
-                images.push(img);
-            }
+const currentFrame = index => (
+`./Secuencia/${(index+1).toString().padStart(4,'0')}.png`
+);
 
-            // Dibujar la primera imagen tan pronto como cargue
-            images[0].onload = () => {
-                context.drawImage(images[0], 0, 0);
-            };
+const images = [];
 
-            // Lógica para actualizar el frame basado en el scroll
-            window.addEventListener('scroll', () => {
-                // Posición actual de scroll
-                const scrollTop = window.scrollY;
-                // Cantidad máxima de scroll posible
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                // Progreso del scroll entre 0 y 1
-                const scrollFraction = scrollTop / maxScroll;
-                
-                // Calcular qué número de fotograma corresponde a este momento
-                // Math.min asegura que no nos pasemos del último frame
-                const frameIndex = Math.min(
-                    frameCount - 1,
-                    Math.floor(scrollFraction * frameCount)
-                );
+for(let i=0;i<frameCount;i++){
 
-                // Usamos requestAnimationFrame para un dibujado suave
-                window.requestAnimationFrame(() => {
-                    context.drawImage(images[frameIndex], 0, 0);
-                });
-            });
+const img = new Image();
+img.src = currentFrame(i);
 
-            // --- CONFIGURACIÓN DE LAS TRANSICIONES DE TEXTO (OPACIDAD) ---
-            // Usamos IntersectionObserver, la forma más optimizada de detectar si un elemento está en pantalla
-            const observerOptions = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0.5 // Se activa cuando al menos el 50% de la tarjeta es visible
-            };
+images.push(img);
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Si entra en pantalla, añade la clase (Opacity: 1)
-                        entry.target.classList.add('visible');
-                    } else {
-                        // Si sale de pantalla, quita la clase (Opacity: 0)
-                        entry.target.classList.remove('visible');
-                    }
-                });
-            }, observerOptions);
+}
 
-            // Aplicar el observador a todas las tarjetas
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => observer.observe(card));
-        });
+images[0].onload = ()=>{
+
+context.drawImage(images[0],0,0);
+
+}
+
+window.addEventListener('scroll',()=>{
+
+const scrollTop = window.scrollY;
+
+const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+const scrollFraction = scrollTop / maxScroll;
+
+const frameIndex = Math.min(
+
+frameCount-1,
+Math.floor(scrollFraction*frameCount)
+
+);
+
+requestAnimationFrame(()=>{
+
+context.drawImage(images[frameIndex],0,0);
+
+});
+
+});
+
+const observer = new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+entry.target.classList.add('visible')
+}else{
+entry.target.classList.remove('visible')
+}
+
+})
+
+},{threshold:0.5})
+
+const cards = document.querySelectorAll('.card')
+
+cards.forEach(card=>observer.observe(card))
+
+});
