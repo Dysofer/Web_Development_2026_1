@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './mantenimento.css'
+import suzukiLogo from '../../assets/LOGO_SUZUKI.png'
 
 /* ─────────────── MODALES ─────────────── */
 
@@ -202,11 +203,26 @@ const EmptyState = ({ icon, title, sub }) => (
 
 const BottomNav = ({ active, onNavigate }) => {
   const tabs = [
-    { id: 'dashboard', icon: '⊞', label: 'Inicio' },
-    { id: 'docs', icon: '📄', label: 'Docs' },
-    { id: 'mant', icon: '🔧', label: 'Manto.' },
-    { id: 'gastos', icon: '💵', label: 'Gastos' },
-    { id: 'more', icon: '☰', label: 'Más' },
+    {
+      id: 'dashboard', label: 'Inicio',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    },
+    {
+      id: 'docs', label: 'Docs',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+    },
+    {
+      id: 'mant', label: 'Manto.',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+    },
+    {
+      id: 'gastos', label: 'Gastos',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 000 4h4a2 2 0 010 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/></svg>
+    },
+    {
+      id: 'more', label: 'Más',
+      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    },
   ]
   return (
     <nav className="bottom-nav">
@@ -221,6 +237,35 @@ const BottomNav = ({ active, onNavigate }) => {
 }
 
 /* Dashboard */
+const IcoKm = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 8v4l2.5 2.5"/>
+    <path d="M6.3 6.3l1.4 1.4"/>
+  </svg>
+)
+const IcoDocs = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+    <polyline points="14 2 14 8 20 8"/>
+    <line x1="9" y1="13" x2="15" y2="13"/>
+    <line x1="9" y1="17" x2="13" y2="17"/>
+  </svg>
+)
+const IcoMant = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+  </svg>
+)
+const IcoGastos = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M16 8h-6a2 2 0 000 4h4a2 2 0 010 4H8"/>
+    <line x1="12" y1="6" x2="12" y2="8"/>
+    <line x1="12" y1="16" x2="12" y2="18"/>
+  </svg>
+)
+
 const Dashboard = ({ docs, mant, gastos, vehicles, onNavigate, onOpenVehicle }) => {
   const totalGastos = gastos.reduce((s, g) => s + Number(g.monto || 0), 0)
   const kmActual = vehicles[0] ? Number(vehicles[0].km).toLocaleString() : '0'
@@ -231,29 +276,47 @@ const Dashboard = ({ docs, mant, gastos, vehicles, onNavigate, onOpenVehicle }) 
           <h2>Mantenimiento Vehicular</h2>
           <p>{vehicles[0] ? `${vehicles[0].marca} ${vehicles[0].modelo} · ${vehicles[0].placa}` : 'Configura tu vehículo'}</p>
         </div>
-        <button className="icon-btn" onClick={onOpenVehicle} title="Agregar vehículo">🚗</button>
+        <button className="icon-btn icon-btn-logo" onClick={onOpenVehicle} title="Agregar vehículo">
+          <img src={suzukiLogo} alt="Logo" />
+        </button>
       </div>
       <div className="screen-content">
         <div className="stats-grid">
-          <div className="stat-card"><div className="stat-icon">🏎</div><div className="stat-label">Kilometraje</div><div className="stat-value">{kmActual}</div></div>
-          <div className="stat-card"><div className="stat-icon">📄</div><div className="stat-label">Documentos</div><div className="stat-value">{docs.length}</div></div>
-          <div className="stat-card"><div className="stat-icon">🔧</div><div className="stat-label">Mantenimientos</div><div className="stat-value">{mant.length}</div></div>
-          <div className="stat-card"><div className="stat-icon">💰</div><div className="stat-label">Gastos Total</div><div className="stat-value">${totalGastos.toLocaleString()}</div></div>
+          <div className="stat-card">
+            <span className="stat-svg"><IcoKm /></span>
+            <div className="stat-label">Kilometraje</div>
+            <div className="stat-value">{kmActual}</div>
+          </div>
+          <div className="stat-card">
+            <span className="stat-svg"><IcoDocs /></span>
+            <div className="stat-label">Documentos</div>
+            <div className="stat-value">{docs.length}</div>
+          </div>
+          <div className="stat-card">
+            <span className="stat-svg"><IcoMant /></span>
+            <div className="stat-label">Mantenimientos</div>
+            <div className="stat-value">{mant.length}</div>
+          </div>
+          <div className="stat-card">
+            <span className="stat-svg"><IcoGastos /></span>
+            <div className="stat-label">Gastos Total</div>
+            <div className="stat-value">${totalGastos.toLocaleString()}</div>
+          </div>
         </div>
         <div className="section-title">Acceso Rápido</div>
         <div className="quick-list">
           <div className="quick-item" onClick={() => onNavigate('docs')}>
-            <div className="quick-icon blue-bg">📄</div>
+            <div className="quick-icon blue-bg"><IcoDocs /></div>
             <div className="quick-text"><strong>Documentos</strong><span>SOAT, seguros, impuestos, licencia</span></div>
             <span className="chevron">›</span>
           </div>
           <div className="quick-item" onClick={() => onNavigate('mant')}>
-            <div className="quick-icon orange-bg">🔧</div>
+            <div className="quick-icon orange-bg"><IcoMant /></div>
             <div className="quick-text"><strong>Mantenimiento</strong><span>Historial de servicios</span></div>
             <span className="chevron">›</span>
           </div>
           <div className="quick-item" onClick={() => onNavigate('gastos')}>
-            <div className="quick-icon green-bg">💵</div>
+            <div className="quick-icon green-bg"><IcoGastos /></div>
             <div className="quick-text"><strong>Gastos</strong><span>Control de gastos y multas</span></div>
             <span className="chevron">›</span>
           </div>
