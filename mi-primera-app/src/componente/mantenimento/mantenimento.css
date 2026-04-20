@@ -116,6 +116,22 @@
 
 .screen-content::-webkit-scrollbar { width: 0; }
 
+/* ── Vehicle selector bar ── */
+.vehicle-selector-bar {
+  background: var(--bg2);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+}
+
+.vehicle-selector-bar .form-select {
+  background: var(--bg);
+  border-color: var(--accent);
+  font-weight: 500;
+  color: var(--text);
+}
+
 /* ── Stats grid ── */
 .stats-grid {
   display: grid;
@@ -383,6 +399,33 @@
 }
 
 .ia-btn:hover { background: rgba(79,110,247,0.2); }
+.ia-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.ia-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--accent2);
+  border-top-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+.ia-vehicle-chip {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ia-vehicle-chip strong { color: var(--text); font-size: 14px; }
+.ia-vehicle-chip span { color: var(--text3); font-size: 12px; }
 
 .ia-result {
   background: var(--bg2);
@@ -391,20 +434,81 @@
   border: 1px solid var(--border2);
 }
 
-.ia-result p { color: var(--text2); font-size: 13px; line-height: 1.6; }
-
 .ia-tip {
   background: #1e1e2e;
   border-radius: 10px;
-  padding: 12px;
-  margin-top: 12px;
+  padding: 14px;
   border-left: 3px solid var(--accent);
 }
 
-.ia-tip strong { color: var(--accent2); font-size: 12px; display: block; margin-bottom: 4px; }
-.ia-tip span { color: var(--text3); font-size: 12px; }
+.ia-tip strong {
+  color: var(--accent2);
+  font-size: 12px;
+  display: block;
+  margin-bottom: 8px;
+}
 
-/* ── More ── */
+.ia-tip span {
+  color: var(--text2);
+  font-size: 13px;
+  line-height: 1.6;
+  display: block;
+}
+
+.ia-error {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.ia-error strong { color: var(--red); font-size: 13px; }
+.ia-error span { color: var(--text3); font-size: 12px; line-height: 1.5; }
+
+/* ── Tipo selector (carro/moto) ── */
+.tipo-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.tipo-btn {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text3);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tipo-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.tipo-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--accent2);
+  font-weight: 600;
+}
+
+.form-select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 .more-list { display: flex; flex-direction: column; gap: 6px; }
 
 .more-item {

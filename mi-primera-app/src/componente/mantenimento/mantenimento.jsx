@@ -1,6 +1,16 @@
 import { useState } from 'react'
 import './mantenimento.css'
 import suzukiLogo from '../../assets/LOGO_SUZUKI.png'
+import icoCarroPng from '../../assets/carro.png'
+import icoMotoPng from '../../assets/moto.png'
+
+const VehicleIcon = ({ tipo, size = 20 }) => (
+  <img
+    src={tipo === 'moto' ? icoMotoPng : icoCarroPng}
+    alt={tipo}
+    style={{ width: size, height: size, objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+  />
+)
 
 /* ─────────────── MODALES ─────────────── */
 
@@ -16,11 +26,19 @@ const Modal = ({ title, onClose, children }) => (
   </div>
 )
 
-const ModalDocumento = ({ onClose, onSave }) => {
-  const [form, setForm] = useState({ tipo: 'SOAT', nombre: '', fecha: '' })
+const ModalDocumento = ({ onClose, onSave, vehicles, defaultVehicle }) => {
+  const [form, setForm] = useState({ vehiculoPlaca: defaultVehicle || vehicles[0]?.placa || '', tipo: 'SOAT', nombre: '', fecha: '' })
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   return (
     <Modal title="Nuevo Documento" onClose={onClose}>
+      {vehicles.length > 0 && (
+        <div className="form-group">
+          <label className="form-label">Vehículo</label>
+          <select className="form-select" value={form.vehiculoPlaca} onChange={e => set('vehiculoPlaca', e.target.value)}>
+            {vehicles.map(v => <option key={v.placa} value={v.placa}>{v.tipo === 'moto' ? '🏍' : '🚗'} {v.marca} {v.modelo} · {v.placa}</option>)}
+          </select>
+        </div>
+      )}
       <div className="form-group">
         <label className="form-label">Tipo de Documento</label>
         <select className="form-select" value={form.tipo} onChange={e => set('tipo', e.target.value)}>
@@ -42,11 +60,19 @@ const ModalDocumento = ({ onClose, onSave }) => {
   )
 }
 
-const ModalMantenimiento = ({ onClose, onSave }) => {
-  const [form, setForm] = useState({ tipo: '', desc: '', fecha: '', costo: '', km: '', kmProx: '' })
+const ModalMantenimiento = ({ onClose, onSave, vehicles, defaultVehicle }) => {
+  const [form, setForm] = useState({ vehiculoPlaca: defaultVehicle || vehicles[0]?.placa || '', tipo: '', desc: '', fecha: '', costo: '', km: '', kmProx: '' })
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   return (
     <Modal title="Nuevo Mantenimiento" onClose={onClose}>
+      {vehicles.length > 0 && (
+        <div className="form-group">
+          <label className="form-label">Vehículo</label>
+          <select className="form-select" value={form.vehiculoPlaca} onChange={e => set('vehiculoPlaca', e.target.value)}>
+            {vehicles.map(v => <option key={v.placa} value={v.placa}>{v.tipo === 'moto' ? '🏍' : '🚗'} {v.marca} {v.modelo} · {v.placa}</option>)}
+          </select>
+        </div>
+      )}
       <div className="form-group">
         <label className="form-label">Tipo de Servicio</label>
         <input className="form-input" placeholder="Ej: Cambio de aceite" value={form.tipo} onChange={e => set('tipo', e.target.value)} />
@@ -82,11 +108,19 @@ const ModalMantenimiento = ({ onClose, onSave }) => {
   )
 }
 
-const ModalGasto = ({ onClose, onSave }) => {
-  const [form, setForm] = useState({ cat: 'Combustible', desc: '', fecha: '', monto: '' })
+const ModalGasto = ({ onClose, onSave, vehicles, defaultVehicle }) => {
+  const [form, setForm] = useState({ vehiculoPlaca: defaultVehicle || vehicles[0]?.placa || '', cat: 'Combustible', desc: '', fecha: '', monto: '' })
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   return (
     <Modal title="Nuevo Gasto" onClose={onClose}>
+      {vehicles.length > 0 && (
+        <div className="form-group">
+          <label className="form-label">Vehículo</label>
+          <select className="form-select" value={form.vehiculoPlaca} onChange={e => set('vehiculoPlaca', e.target.value)}>
+            {vehicles.map(v => <option key={v.placa} value={v.placa}>{v.tipo === 'moto' ? '🏍' : '🚗'} {v.marca} {v.modelo} · {v.placa}</option>)}
+          </select>
+        </div>
+      )}
       <div className="form-group">
         <label className="form-label">Categoría</label>
         <select className="form-select" value={form.cat} onChange={e => set('cat', e.target.value)}>
@@ -152,36 +186,143 @@ const ModalTaller = ({ onClose, onSave }) => {
   )
 }
 
+/* ─── Catálogo de marcas y modelos ─── */
+const CATALOGO = {
+  carro: {
+    Toyota:     ['Corolla', 'Camry', 'Hilux', 'RAV4', 'Fortuner', 'Yaris', 'Prado'],
+    Chevrolet:  ['Spark', 'Onix', 'Tracker', 'Equinox', 'Captiva', 'Sail', 'Blazer'],
+    Renault:    ['Logan', 'Sandero', 'Duster', 'Kwid', 'Stepway', 'Koleos', 'Clio'],
+    Mazda:      ['Mazda2', 'Mazda3', 'Mazda6', 'CX-3', 'CX-5', 'CX-9', 'BT-50'],
+    Hyundai:    ['Tucson', 'Santa Fe', 'i10', 'i20', 'Elantra', 'Creta', 'Ioniq'],
+    Kia:        ['Picanto', 'Rio', 'Sportage', 'Sorento', 'Seltos', 'Stinger', 'Soul'],
+    Ford:       ['Fiesta', 'Focus', 'Escape', 'Explorer', 'Mustang', 'Ranger', 'EcoSport'],
+    Volkswagen: ['Polo', 'Golf', 'Jetta', 'Tiguan', 'Touareg', 'Passat', 'T-Cross'],
+    BMW:        ['Serie 1', 'Serie 3', 'Serie 5', 'Serie 7', 'X1', 'X3', 'X5'],
+    Mercedes:   ['Clase A', 'Clase C', 'Clase E', 'GLA', 'GLC', 'GLE', 'Sprinter'],
+    Nissan:     ['March', 'Sentra', 'Versa', 'X-Trail', 'Qashqai', 'Frontier', 'Kicks'],
+    Suzuki:     ['Swift', 'Vitara', 'Jimny', 'Baleno', 'Ertiga', 'S-Presso', 'Ignis'],
+    Honda:      ['Civic', 'Accord', 'CR-V', 'HR-V', 'Pilot', 'Fit', 'WR-V'],
+    Audi:       ['A1', 'A3', 'A4', 'A6', 'Q3', 'Q5', 'Q7'],
+    Jeep:       ['Wrangler', 'Cherokee', 'Grand Cherokee', 'Compass', 'Renegade'],
+    Otro:       ['Otro modelo'],
+  },
+  moto: {
+    Honda:      ['CB190R', 'CB300R', 'CBR600RR', 'CRF300L', 'XR150L', 'CB500F', 'Wave'],
+    Yamaha:     ['FZ25', 'MT-03', 'R3', 'XTZ150', 'XTZ250', 'NMAX', 'Crypton'],
+    Suzuki:     ['GN125', 'GS150', 'GSX-R150', 'V-Strom 650', 'Gixxer', 'Burgman'],
+    Kawasaki:   ['Ninja 300', 'Ninja 400', 'Z400', 'Versys 300', 'KLX150', 'Z650'],
+    KTM:        ['Duke 200', 'Duke 390', 'RC390', 'Adventure 390', 'EXC 300'],
+    BMW:        ['G 310 R', 'G 310 GS', 'F 850 GS', 'S 1000 RR', 'R 1250 GS'],
+    'Royal Enfield': ['Meteor 350', 'Classic 350', 'Bullet 350', 'Himalayan', 'Interceptor 650'],
+    AKT:        ['TTR 200', 'NKD 125', 'Dynamic 125', 'TT 180 R', 'CR5 200'],
+    Auteco:     ['Pulsar NS200', 'Pulsar RS200', 'Discover 125', 'Platina 110'],
+    TVS:        ['Apache RTR 200', 'Apache RTR 160', 'Star City', 'Ntorq 125'],
+    Otro:       ['Otro modelo'],
+  },
+}
+
 const ModalVehiculo = ({ onClose, onSave }) => {
-  const [form, setForm] = useState({ placa: '', marca: '', modelo: '', anio: '', km: '0' })
+  const [form, setForm] = useState({
+    tipo: 'carro', placa: '', marca: '', modelo: '', anio: '', km: '0'
+  })
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
+
+  const marcas = Object.keys(CATALOGO[form.tipo])
+  const modelos = form.marca ? (CATALOGO[form.tipo][form.marca] || []) : []
+
+  const handleTipo = (tipo) => {
+    setForm(f => ({ ...f, tipo, marca: '', modelo: '' }))
+  }
+  const handleMarca = (marca) => {
+    setForm(f => ({ ...f, marca, modelo: '' }))
+  }
+
+  const anioActual = new Date().getFullYear()
+  const anios = Array.from({ length: 30 }, (_, i) => anioActual - i)
+
   return (
     <Modal title="Nuevo Vehículo" onClose={onClose}>
+
+      {/* Tipo */}
+      <div className="form-group">
+        <label className="form-label">Tipo de Vehículo</label>
+        <div className="tipo-selector">
+          <button
+            type="button"
+            className={`tipo-btn ${form.tipo === 'carro' ? 'active' : ''}`}
+            onClick={() => handleTipo('carro')}
+          >
+            <VehicleIcon tipo="carro" size={18} /> Carro
+          </button>
+          <button
+            type="button"
+            className={`tipo-btn ${form.tipo === 'moto' ? 'active' : ''}`}
+            onClick={() => handleTipo('moto')}
+          >
+            <VehicleIcon tipo="moto" size={18} /> Moto
+          </button>
+        </div>
+      </div>
+
+      {/* Placa */}
       <div className="form-group">
         <label className="form-label">Placa</label>
-        <input className="form-input" placeholder="ABC-123" value={form.placa} onChange={e => set('placa', e.target.value)} />
+        <input
+          className="form-input"
+          placeholder="ABC-123"
+          value={form.placa}
+          onChange={e => set('placa', e.target.value.toUpperCase())}
+        />
       </div>
-      <div className="form-row">
-        <div className="form-group">
-          <label className="form-label">Marca</label>
-          <input className="form-input" placeholder="Toyota" value={form.marca} onChange={e => set('marca', e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label className="form-label">Modelo</label>
-          <input className="form-input" placeholder="Corolla" value={form.modelo} onChange={e => set('modelo', e.target.value)} />
-        </div>
+
+      {/* Marca */}
+      <div className="form-group">
+        <label className="form-label">Marca</label>
+        <select className="form-select" value={form.marca} onChange={e => handleMarca(e.target.value)}>
+          <option value="">— Selecciona marca —</option>
+          {marcas.map(m => <option key={m} value={m}>{m}</option>)}
+        </select>
       </div>
+
+      {/* Modelo */}
+      <div className="form-group">
+        <label className="form-label">Modelo</label>
+        <select
+          className="form-select"
+          value={form.modelo}
+          onChange={e => set('modelo', e.target.value)}
+          disabled={!form.marca}
+        >
+          <option value="">— Selecciona modelo —</option>
+          {modelos.map(m => <option key={m} value={m}>{m}</option>)}
+        </select>
+      </div>
+
+      {/* Año y Km */}
       <div className="form-row">
         <div className="form-group">
           <label className="form-label">Año</label>
-          <input type="number" className="form-input" placeholder="2024" value={form.anio} onChange={e => set('anio', e.target.value)} />
+          <select className="form-select" value={form.anio} onChange={e => set('anio', e.target.value)}>
+            <option value="">— Año —</option>
+            {anios.map(a => <option key={a} value={a}>{a}</option>)}
+          </select>
         </div>
         <div className="form-group">
           <label className="form-label">Kilometraje</label>
-          <input type="number" className="form-input" placeholder="0" value={form.km} onChange={e => set('km', e.target.value)} />
+          <input
+            type="number"
+            className="form-input"
+            placeholder="0"
+            value={form.km}
+            onChange={e => set('km', e.target.value)}
+          />
         </div>
       </div>
-      <button className="btn-save" onClick={() => form.placa && onSave(form)}>
+
+      <button
+        className="btn-save"
+        onClick={() => form.placa && form.marca && form.modelo && onSave(form)}
+      >
         Guardar Vehículo
       </button>
     </Modal>
@@ -266,21 +407,43 @@ const IcoGastos = () => (
   </svg>
 )
 
-const Dashboard = ({ docs, mant, gastos, vehicles, onNavigate, onOpenVehicle }) => {
+const Dashboard = ({ docs, mant, gastos, vehicles, activeVehicle, onSetActive, onNavigate, onOpenVehicle }) => {
   const totalGastos = gastos.reduce((s, g) => s + Number(g.monto || 0), 0)
-  const kmActual = vehicles[0] ? Number(vehicles[0].km).toLocaleString() : '0'
+  const kmActual = activeVehicle ? Number(activeVehicle.km).toLocaleString() : '0'
+  const docsVehicle = activeVehicle ? docs.filter(d => d.vehiculoPlaca === activeVehicle.placa).length : docs.length
+  const mantVehicle = activeVehicle ? mant.filter(m => m.vehiculoPlaca === activeVehicle.placa).length : mant.length
+  const gastosVehicle = activeVehicle ? gastos.filter(g => g.vehiculoPlaca === activeVehicle.placa).reduce((s, g) => s + Number(g.monto || 0), 0) : totalGastos
+
   return (
     <div className="screen">
       <div className="top-bar">
         <div>
           <h2>Mantenimiento Vehicular</h2>
-          <p>{vehicles[0] ? `${vehicles[0].marca} ${vehicles[0].modelo} · ${vehicles[0].placa}` : 'Configura tu vehículo'}</p>
+          <p>{vehicles.length === 0 ? 'Configura tu vehículo' : `${vehicles.length} vehículo${vehicles.length > 1 ? 's' : ''} registrado${vehicles.length > 1 ? 's' : ''}`}</p>
         </div>
         <button className="icon-btn icon-btn-logo" onClick={onOpenVehicle} title="Agregar vehículo">
           <img src={suzukiLogo} alt="Logo" />
         </button>
       </div>
       <div className="screen-content">
+
+        {vehicles.length > 0 && (
+          <div className="vehicle-selector-bar">
+            <label className="form-label" style={{ marginBottom: '6px', display: 'block' }}>Vehículo activo</label>
+            <select
+              className="form-select"
+              value={activeVehicle?.placa || ''}
+              onChange={e => onSetActive(e.target.value)}
+            >
+              {vehicles.map(v => (
+                <option key={v.placa} value={v.placa}>
+                  {v.tipo === 'moto' ? '🏍' : '🚗'} {v.marca} {v.modelo} · {v.placa}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className="stats-grid">
           <div className="stat-card">
             <span className="stat-svg"><IcoKm /></span>
@@ -290,17 +453,17 @@ const Dashboard = ({ docs, mant, gastos, vehicles, onNavigate, onOpenVehicle }) 
           <div className="stat-card">
             <span className="stat-svg"><IcoDocs /></span>
             <div className="stat-label">Documentos</div>
-            <div className="stat-value">{docs.length}</div>
+            <div className="stat-value">{docsVehicle}</div>
           </div>
           <div className="stat-card">
             <span className="stat-svg"><IcoMant /></span>
             <div className="stat-label">Mantenimientos</div>
-            <div className="stat-value">{mant.length}</div>
+            <div className="stat-value">{mantVehicle}</div>
           </div>
           <div className="stat-card">
             <span className="stat-svg"><IcoGastos /></span>
             <div className="stat-label">Gastos Total</div>
-            <div className="stat-value">${totalGastos.toLocaleString()}</div>
+            <div className="stat-value">${gastosVehicle.toLocaleString()}</div>
           </div>
         </div>
         <div className="section-title">Acceso Rápido</div>
@@ -343,7 +506,7 @@ const Documentos = ({ docs, onNavigate, onAdd }) => (
                 <div className="item-icon blue-bg">{DOC_ICONS[d.tipo] || '📄'}</div>
                 <div className="item-body">
                   <strong>{d.nombre}</strong>
-                  <span>{d.tipo}{d.fecha ? ` · Vence: ${d.fecha}` : ''}</span>
+                  <span>{d.tipo}{d.fecha ? ` · Vence: ${d.fecha}` : ''}{d.vehiculoPlaca ? ` · ${d.vehiculoPlaca}` : ''}</span>
                 </div>
                 <span className="badge badge-ok">Activo</span>
               </div>
@@ -371,7 +534,7 @@ const Mantenimientos = ({ mant, onNavigate, onAdd }) => (
                 <div className="item-icon orange-bg">🔧</div>
                 <div className="item-body">
                   <strong>{m.tipo}</strong>
-                  <span>{m.fecha || 'Sin fecha'}{m.km ? ` · ${Number(m.km).toLocaleString()} km` : ''}{m.costo ? ` · $${Number(m.costo).toLocaleString()}` : ''}</span>
+                  <span>{m.fecha || 'Sin fecha'}{m.km ? ` · ${Number(m.km).toLocaleString()} km` : ''}{m.costo ? ` · $${Number(m.costo).toLocaleString()}` : ''}{m.vehiculoPlaca ? ` · ${m.vehiculoPlaca}` : ''}</span>
                 </div>
                 <span className="badge badge-warn">Hecho</span>
               </div>
@@ -401,7 +564,7 @@ const Gastos = ({ gastos, onNavigate, onAdd }) => {
                   <div className="item-icon green-bg">{GASTO_ICONS[g.cat] || '💸'}</div>
                   <div className="item-body">
                     <strong>{g.desc}</strong>
-                    <span>{g.cat} · {g.fecha || 'Sin fecha'}</span>
+                    <span>{g.cat} · {g.fecha || 'Sin fecha'}{g.vehiculoPlaca ? ` · ${g.vehiculoPlaca}` : ''}</span>
                   </div>
                   <span className="badge badge-blue">${Number(g.monto).toLocaleString()}</span>
                 </div>
@@ -443,34 +606,129 @@ const Talleres = ({ talleres, onNavigate, onAdd }) => (
 )
 
 /* Mantenimiento IA */
-const MantenimientoIA = ({ vehicles, mant, onNavigate }) => {
+const MantenimientoIA = ({ vehicles, activeVehicle, onSetActive, mant, docs, gastos, onNavigate }) => {
   const [result, setResult] = useState(null)
-  const generate = () => {
-    const v = vehicles[0]
-    const name = v ? `${v.marca} ${v.modelo} (${v.anio})` : 'tu vehículo'
-    const km = v ? Number(v.km) : 0
-    const nextOil = Math.ceil((km || 1) / 5000) * 5000
-    setResult({
-      text: `Con base en el historial de ${name}, se detectaron ${mant.length} servicio(s) registrado(s). Se recomienda verificar el estado de los frenos, nivel de fluidos y revisar las correas de distribución si supera los 80.000 km.`,
-      tip: v && km > 0
-        ? `Cambio de aceite cada 5.000 km. Próximo a los ${nextOil.toLocaleString()} km.`
-        : 'Registra tu vehículo y kilometraje para recomendaciones precisas.',
-    })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  const v = activeVehicle || vehicles[0] || null
+
+  const generate = async () => {
+    setLoading(true)
+    setError(null)
+    setResult(null)
+
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY
+
+    if (!apiKey) {
+      setError('No se encontró la API key. Agrega VITE_GEMINI_API_KEY en tu archivo .env')
+      setLoading(false)
+      return
+    }
+
+    const vehicleInfo = v
+      ? `Vehículo: ${v.marca} ${v.modelo} ${v.anio}, Placa: ${v.placa}, Kilometraje: ${Number(v.km).toLocaleString()} km`
+      : 'No hay vehículo registrado.'
+
+    const mantVehicle = v ? mant.filter(m => m.vehiculoPlaca === v.placa) : mant
+    const docsVehicle = v ? docs.filter(d => d.vehiculoPlaca === v.placa) : docs
+
+    const mantInfo = mantVehicle.length > 0
+      ? mantVehicle.map(m => `- ${m.tipo} (${m.fecha || 'sin fecha'}, ${m.km ? m.km + ' km' : 'km no registrado'})`).join('\n')
+      : 'Sin mantenimientos registrados.'
+
+    const docsInfo = docsVehicle.length > 0
+      ? docsVehicle.map(d => `- ${d.nombre}, vence: ${d.fecha || 'sin fecha'}`).join('\n')
+      : 'Sin documentos registrados.'
+
+    const prompt = `Eres un mecánico experto. Con base en estos datos, da 1 o 2 recomendaciones de mantenimiento preventivo, cortas y directas. Sin introducciones, solo las recomendaciones en español, máximo 3 oraciones.
+
+${vehicleInfo}
+Mantenimientos: ${mantInfo}
+Documentos: ${docsInfo}`
+
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { maxOutputTokens: 300, temperature: 0.7 },
+          }),
+        }
+      )
+
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error?.message || `Error ${res.status}`)
+      }
+
+      const data = await res.json()
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sin respuesta.'
+      setResult(text)
+    } catch (e) {
+      setError(`Error al conectar con IA: ${e.message}`)
+    } finally {
+      setLoading(false)
+    }
   }
+
   return (
     <div className="screen">
       <div className="top-bar">
-        <div><h2>Mantenimiento Preventivo</h2><p>Recomendaciones basadas en IA</p></div>
+        <div><h2>Mantenimiento Preventivo</h2><p>Recomendaciones con IA</p></div>
       </div>
       <div className="screen-content">
-        <button className="ia-btn" onClick={generate}>✨ Generar Recomendaciones con IA</button>
-        {result
-          ? <div className="ia-result">
-              <p>{result.text}</p>
-              <div className="ia-tip"><strong>💡 Próximo servicio recomendado</strong><span>{result.tip}</span></div>
+
+        {vehicles.length > 0 && (
+          <div className="vehicle-selector-bar">
+            <label className="form-label" style={{ marginBottom: '6px', display: 'block' }}>Vehículo a analizar</label>
+            <select
+              className="form-select"
+              value={v?.placa || ''}
+              onChange={e => { onSetActive(e.target.value); setResult(null); setError(null) }}
+            >
+              {vehicles.map(veh => (
+                <option key={veh.placa} value={veh.placa}>
+                  {veh.tipo === 'moto' ? '🏍' : '🚗'} {veh.marca} {veh.modelo} · {veh.placa}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <button className="ia-btn" onClick={generate} disabled={loading}>
+          {loading
+            ? <><span className="ia-spinner" />  Analizando tu vehículo...</>
+            : <>✨ Generar Recomendaciones con IA</>
+          }
+        </button>
+
+        {error && (
+          <div className="ia-error">
+            <strong>⚠ Error</strong>
+            <span>{error}</span>
+          </div>
+        )}
+
+        {result && (
+          <div className="ia-result">
+            <div className="ia-tip">
+              <strong>💡 Recomendaciones para {v?.marca} {v?.modelo}</strong>
+              <span>{result}</span>
             </div>
-          : <EmptyState icon="✨" title="Sin recomendaciones aún" sub="Toca el botón para generar recomendaciones de mantenimiento basadas en tu vehículo" />
-        }
+          </div>
+        )}
+
+        {!result && !error && !loading && (
+          <EmptyState
+            icon="✨"
+            title="Sin recomendaciones aún"
+            sub={v ? 'Toca el botón para analizar tu vehículo' : 'Primero registra tu vehículo en Perfil'}
+          />
+        )}
       </div>
       <BottomNav active="more" onNavigate={onNavigate} />
     </div>
@@ -495,7 +753,7 @@ const Perfil = ({ vehicles, onAddVehicle, onNavigate }) => (
         ? <EmptyState icon="🚗" title="Sin vehículos registrados" />
         : vehicles.map((v, i) => (
             <div key={i} className="vehicle-chip">
-              <span className="vc-icon">🚗</span>
+              <span className="vc-icon"><VehicleIcon tipo={v.tipo} size={22} /></span>
               <div>
                 <strong>{v.marca} {v.modelo} {v.anio}</strong>
                 <span>{v.placa} · {Number(v.km).toLocaleString()} km</span>
@@ -545,11 +803,19 @@ const Mantenimento = ({ user, onLogout }) => {
   const [modal, setModal] = useState(null)
   const [showMore, setShowMore] = useState(false)
 
-  const [docs, setDocs] = useState([])
-  const [mant, setMant] = useState([])
-  const [gastos, setGastos] = useState([])
-  const [talleres, setTalleres] = useState([])
-  const [vehicles, setVehicles] = useState([])
+  const [docs, setDocs] = useState(() => JSON.parse(localStorage.getItem('ad_docs') || '[]'))
+  const [mant, setMant] = useState(() => JSON.parse(localStorage.getItem('ad_mant') || '[]'))
+  const [gastos, setGastos] = useState(() => JSON.parse(localStorage.getItem('ad_gastos') || '[]'))
+  const [talleres, setTalleres] = useState(() => JSON.parse(localStorage.getItem('ad_talleres') || '[]'))
+  const [vehicles, setVehicles] = useState(() => JSON.parse(localStorage.getItem('ad_vehicles') || '[]'))
+  const [activeVehiclePlaca, setActiveVehiclePlaca] = useState(() => localStorage.getItem('ad_active') || '')
+
+  const activeVehicle = vehicles.find(v => v.placa === activeVehiclePlaca) || vehicles[0] || null
+
+  const setActive = (placa) => {
+    setActiveVehiclePlaca(placa)
+    localStorage.setItem('ad_active', placa)
+  }
 
   const navigate = (s) => {
     if (s === 'more') { setShowMore(true); return }
@@ -558,19 +824,27 @@ const Mantenimento = ({ user, onLogout }) => {
   const openModal = (m) => setModal(m)
   const closeModal = () => setModal(null)
 
-  const saveDoc = (d) => { setDocs(prev => [...prev, d]); closeModal() }
-  const saveMant = (m) => { setMant(prev => [...prev, m]); closeModal() }
-  const saveGasto = (g) => { setGastos(prev => [...prev, g]); closeModal() }
-  const saveTaller = (t) => { setTalleres(prev => [...prev, t]); closeModal() }
-  const saveVehicle = (v) => { setVehicles([v]); closeModal() }
+  const saveDoc = (d) => { setDocs(prev => { const n = [...prev, d]; localStorage.setItem('ad_docs', JSON.stringify(n)); return n }); closeModal() }
+  const saveMant = (m) => { setMant(prev => { const n = [...prev, m]; localStorage.setItem('ad_mant', JSON.stringify(n)); return n }); closeModal() }
+  const saveGasto = (g) => { setGastos(prev => { const n = [...prev, g]; localStorage.setItem('ad_gastos', JSON.stringify(n)); return n }); closeModal() }
+  const saveTaller = (t) => { setTalleres(prev => { const n = [...prev, t]; localStorage.setItem('ad_talleres', JSON.stringify(n)); return n }); closeModal() }
+  const saveVehicle = (v) => {
+    setVehicles(prev => {
+      const n = [...prev, v]
+      localStorage.setItem('ad_vehicles', JSON.stringify(n))
+      return n
+    })
+    setActive(v.placa)
+    closeModal()
+  }
 
   const screens = {
-    dashboard: <Dashboard docs={docs} mant={mant} gastos={gastos} vehicles={vehicles} onNavigate={navigate} onOpenVehicle={() => openModal('vehicle')} />,
+    dashboard: <Dashboard docs={docs} mant={mant} gastos={gastos} vehicles={vehicles} activeVehicle={activeVehicle} onSetActive={setActive} onNavigate={navigate} onOpenVehicle={() => openModal('vehicle')} />,
     docs:      <Documentos docs={docs} onNavigate={navigate} onAdd={() => openModal('doc')} />,
     mant:      <Mantenimientos mant={mant} onNavigate={navigate} onAdd={() => openModal('mant')} />,
     gastos:    <Gastos gastos={gastos} onNavigate={navigate} onAdd={() => openModal('gasto')} />,
     talleres:  <Talleres talleres={talleres} onNavigate={navigate} onAdd={() => openModal('taller')} />,
-    ia:        <MantenimientoIA vehicles={vehicles} mant={mant} onNavigate={navigate} />,
+    ia:        <MantenimientoIA vehicles={vehicles} activeVehicle={activeVehicle} onSetActive={setActive} mant={mant} docs={docs} gastos={gastos} onNavigate={navigate} />,
     perfil:    <Perfil vehicles={vehicles} onAddVehicle={() => openModal('vehicle')} onNavigate={navigate} />,
   }
 
@@ -579,9 +853,9 @@ const Mantenimento = ({ user, onLogout }) => {
       <div className="phone-shell">
         {screens[screen] || screens.dashboard}
 
-        {modal === 'doc'     && <ModalDocumento    onClose={closeModal} onSave={saveDoc} />}
-        {modal === 'mant'    && <ModalMantenimiento onClose={closeModal} onSave={saveMant} />}
-        {modal === 'gasto'   && <ModalGasto         onClose={closeModal} onSave={saveGasto} />}
+        {modal === 'doc'     && <ModalDocumento    onClose={closeModal} onSave={saveDoc}    vehicles={vehicles} defaultVehicle={activeVehicle?.placa} />}
+        {modal === 'mant'    && <ModalMantenimiento onClose={closeModal} onSave={saveMant}   vehicles={vehicles} defaultVehicle={activeVehicle?.placa} />}
+        {modal === 'gasto'   && <ModalGasto         onClose={closeModal} onSave={saveGasto}  vehicles={vehicles} defaultVehicle={activeVehicle?.placa} />}
         {modal === 'taller'  && <ModalTaller        onClose={closeModal} onSave={saveTaller} />}
         {modal === 'vehicle' && <ModalVehiculo      onClose={closeModal} onSave={saveVehicle} />}
 
