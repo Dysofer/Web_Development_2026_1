@@ -1,8 +1,12 @@
 import tkinter as tk
-from tkinter import filedialog, ttk
+from tkinter import filedialog
+import tkinter.messagebox
 import cv2
 from PIL import Image, ImageTk
 import numpy as np
+import subprocess
+import sys
+import os
 
 # ── Tonos del meme ──────────────────────────────────────────────────────────
 SWATCHES = [
@@ -14,16 +18,23 @@ SWATCHES = [
     {"color": "#4A2C1A", "accepted": False},
 ]
 
+# ── Ruta del video meme (debe estar en la misma carpeta que este script) ────
+VIDEO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "src", "Mi_Bomboclaat.mp4")
+
 class AmigoDetector:
     def __init__(self, root):
         self.root = root
         self.root.title("¿Puedes ser mi amigo?")
-        self.root.geometry("520x700")
+        self.root.geometry("520x960")
         self.root.configure(bg="#ffffff")
         self.root.resizable(False, False)
 
         self.cap = None
         self.camera_running = False
+        self.last_frame = None
+        self.countdown_value = 0
+        self.countdown_job = None
+        self.pending_result = None
 
         self.build_ui()
 
@@ -52,7 +63,7 @@ class AmigoDetector:
             tk.Label(box, text=icon, font=("Segoe UI", 16, "bold"),
                      bg=s["color"], fg=color).place(relx=0.5, rely=0.5, anchor="center")
 
-        # Botones
+        # Botones principales
         btn_frame = tk.Frame(self.root, bg="#ffffff")
         btn_frame.pack(pady=(0, 16))
 
@@ -74,23 +85,29 @@ class AmigoDetector:
         )
         self.btn_camera.pack(side="left", padx=6)
 
-        # Canvas para imagen / cámara
+        # Canvas imagen / cámara
         self.canvas = tk.Canvas(self.root, width=460, height=300,
                                 bg="#f5f5f5", highlightthickness=1,
                                 highlightbackground="#e0e0e0")
-        self.canvas.pack(pady=(0, 16))
+        self.canvas.pack(pady=(0, 8))
         self.canvas.create_text(230, 150, text="Aquí aparecerá tu foto o cámara",
                                 fill="#aaaaaa", font=("Segoe UI", 12))
 
-        # Botón capturar (oculto hasta que la cámara esté activa)
+        # Countdown label (oculto por defecto)
+        self.countdown_label = tk.Label(
+            self.root, text="", font=("Segoe UI", 60, "bold"),
+            bg="#ffffff", fg="#1a1a1a"
+        )
+
+        # Botón capturar (oculto hasta que cámara esté activa)
         self.btn_capture = tk.Button(
             self.root, text="📸  Capturar foto",
             font=("Segoe UI", 11), bg="#2d7a2d", fg="white",
             activebackground="#1f5c1f", relief="flat", padx=18, pady=8,
-            cursor="hand2", command=self.capture_frame
+            cursor="hand2", command=self.start_countdown
         )
 
-        # Resultado
+        # ── Resultado ────────────────────────────────────────────────────────
         self.result_frame = tk.Frame(self.root, bg="#f9f9f9",
                                      highlightthickness=1,
                                      highlightbackground="#e0e0e0")
@@ -130,6 +147,7 @@ class AmigoDetector:
     # ── Subir foto ────────────────────────────────────────────────────────────
     def upload_photo(self):
         self.stop_camera()
+        self.cancel_countdown()
         path = filedialog.askopenfilename(
             filetypes=[("Imágenes", "*.jpg *.jpeg *.png *.bmp *.webp")]
         )
@@ -139,7 +157,7 @@ class AmigoDetector:
         if img_cv is None:
             return
         self.show_image_on_canvas(img_cv)
-        self.analyze(img_cv)
+        self.start_countdown(frame=img_cv)
 
     # ── Cámara ────────────────────────────────────────────────────────────────
     def toggle_camera(self):
@@ -169,12 +187,6 @@ class AmigoDetector:
             self.show_image_on_canvas(frame)
         self.root.after(30, self.update_camera)
 
-    def capture_frame(self):
-        if hasattr(self, "last_frame"):
-            self.stop_camera()
-            self.show_image_on_canvas(self.last_frame)
-            self.analyze(self.last_frame)
-
     def stop_camera(self):
         self.camera_running = False
         if self.cap:
@@ -182,6 +194,47 @@ class AmigoDetector:
             self.cap = None
         self.btn_camera.config(text="📷  Activar cámara")
         self.btn_capture.pack_forget()
+
+    # ── Countdown ─────────────────────────────────────────────────────────────
+    def start_countdown(self, frame=None):
+        if frame is None:
+            if self.last_frame is None:
+                return
+            frame = self.last_frame.copy()
+            self.stop_camera()
+            self.show_image_on_canvas(frame)
+
+        self.pending_result = frame
+        self.cancel_countdown()
+        self.countdown_value = 3
+        self.countdown_label.pack(pady=(0, 8))
+        self.result_frame.pack_forget()
+        self._tick_countdown()
+
+    def _tick_countdown(self):
+        if self.countdown_value > 0:
+            self.countdown_label.config(text=str(self.countdown_value))
+            self.root.update()
+            self.countdown_value -= 1
+            self.countdown_job = self.root.after(900, self._tick_countdown)
+        else:
+            self.countdown_label.config(text="🔍")
+            self.root.update()
+            self.countdown_job = self.root.after(400, self._finish_countdown)
+
+    def _finish_countdown(self):
+        self.countdown_label.pack_forget()
+        self.countdown_label.config(text="")
+        if self.pending_result is not None:
+            self.analyze(self.pending_result)
+            self.pending_result = None
+
+    def cancel_countdown(self):
+        if self.countdown_job:
+            self.root.after_cancel(self.countdown_job)
+            self.countdown_job = None
+        self.countdown_label.pack_forget()
+        self.countdown_label.config(text="")
 
     # ── Mostrar imagen en canvas ──────────────────────────────────────────────
     def show_image_on_canvas(self, frame_bgr):
@@ -219,6 +272,8 @@ class AmigoDetector:
                 "Pero tranquilo/a — el meme es racista y una sátira.\n¡Tu amistad vale igual! 🤝"
 
         self.show_result(icon, title, sub, hex_color, lightness)
+        if skin_like:
+            self.play_video()
 
     # ── Mostrar resultado ─────────────────────────────────────────────────────
     def show_result(self, icon, title, sub, hex_color, lightness):
@@ -232,9 +287,26 @@ class AmigoDetector:
 
         self.result_frame.pack(fill="x", padx=30, pady=(0, 16))
 
+    # ── Reproducir video meme ─────────────────────────────────────────────────
+    def play_video(self):
+        if not os.path.exists(VIDEO_PATH):
+            print(f"Video no encontrado en: {VIDEO_PATH}")
+            return
+        try:
+            if sys.platform == "win32":
+                os.startfile(VIDEO_PATH)
+            elif sys.platform == "darwin":
+                subprocess.Popen(["open", VIDEO_PATH])
+            else:
+                subprocess.Popen(["xdg-open", VIDEO_PATH])
+        except Exception as e:
+            print(f"No se pudo reproducir el video: {e}")
+
     # ── Reset ─────────────────────────────────────────────────────────────────
     def reset(self):
+        self.cancel_countdown()
         self.result_frame.pack_forget()
+        self.last_frame = None
         self.canvas.delete("all")
         self.canvas.create_text(230, 150, text="Aquí aparecerá tu foto o cámara",
                                 fill="#aaaaaa", font=("Segoe UI", 12))
