@@ -534,4 +534,4 @@ const Mantenimento = ({ user, onLogout }) => {
   )
 }
 
-export default Mantenimentos
+export default Mantenimientos
