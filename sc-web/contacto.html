@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Contacto</title>
+  <link rel="stylesheet" href="css/variables.css" /><link rel="stylesheet" href="css/base.css" /><link rel="stylesheet" href="css/navbar.css" /><link rel="stylesheet" href="css/components.css" /><link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar"><div class="container"><a href="index.html" class="navbar__brand"><img data-logo src="#" alt="Logo" class="navbar__logo" /><span class="navbar__name">Shopping Canada</span></a><div class="navbar__links"><a href="index.html">Inicio</a><a href="catalogo.html">Catálogo</a><a href="nosotros.html">Nosotros</a><a href="contacto.html" class="active">Contacto</a></div><div class="navbar__actions"><a href="carrito.html" class="navbar__cart">Carrito <span class="navbar__cart-badge cart-count" style="display:none">0</span></a><button class="navbar__login" onclick="location.href='login.html'">Iniciar sesión</button></div><div class="navbar__hamburger"><span></span><span></span><span></span></div></div><div class="navbar__mobile-menu"><a href="index.html">Inicio</a><a href="catalogo.html">Catálogo</a><a href="nosotros.html">Nosotros</a><a href="contacto.html" class="active">Contacto</a></div></nav>
+  <nav class="bottom-nav"><div class="bottom-nav__item" onclick="location.href='index.html'"><div class="bottom-nav__icon">🏠</div><span class="bottom-nav__label">Inicio</span></div><div class="bottom-nav__item" onclick="location.href='catalogo.html'"><div class="bottom-nav__icon">🛍️</div><span class="bottom-nav__label">Catálogo</span></div><div class="bottom-nav__item" onclick="location.href='carrito.html'"><div class="bottom-nav__icon">🛒</div><span class="bottom-nav__label">Carrito</span></div><div class="bottom-nav__item"><div class="bottom-nav__icon">👤</div><span class="bottom-nav__label">Cuenta</span></div></nav>
+
+  <div class="page-content">
+    <div class="contact-hero">
+      <div class="container">
+        <div class="section-eyebrow">Estamos aquí para ti</div>
+        <h1 class="contact-hero__title">Contáctanos</h1>
+        <p class="contact-hero__text">¿Tienes preguntas sobre un producto, un pedido o envíos? Nuestro equipo está listo para ayudarte.</p>
+      </div>
+    </div>
+
+    <div class="contact-body">
+      <div class="container">
+        <div class="contact-form-col">
+          <h2 style="font-size:20px;font-weight:600;color:var(--brown-dark);margin-bottom:20px;">Envíanos un mensaje</h2>
+          <div class="card">
+            <form data-validate data-action="index.html">
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Nombre</label><input class="form-input" type="text" placeholder="Tu nombre" required /></div>
+                <div class="form-group"><label class="form-label">Apellido</label><input class="form-input" type="text" placeholder="Tu apellido" required /></div>
+              </div>
+              <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" required /></div>
+              <div class="form-group">
+                <label class="form-label">Asunto</label>
+                <select class="form-select"><option>Seleccionar motivo</option><option>Consulta sobre un producto</option><option>Estado de mi pedido</option><option>Problema con mi envío</option><option>Devoluciones y cambios</option><option>Otro</option></select>
+              </div>
+              <div class="form-group"><label class="form-label">Número de pedido (opcional)</label><input class="form-input" type="text" placeholder="#SC-2026-00000" /></div>
+              <div class="form-group"><label class="form-label">Mensaje</label><textarea class="form-textarea form-input" rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea></div>
+              <button type="submit" class="btn-primary btn-full" style="padding:14px 0;font-size:15px;">Enviar mensaje</button>
+              <p style="text-align:center;font-size:12px;color:#aaa;margin-top:10px;">Te responderemos en menos de 24 horas hábiles</p>
+            </form>
+          </div>
+        </div>
+
+        <div class="contact-info-col">
+          <h2 style="font-size:20px;font-weight:600;color:var(--brown-dark);margin-bottom:20px;">Información de contacto</h2>
+          <div class="info-card"><div class="info-card__icon">📧</div><div><div class="info-card__label">Correo electrónico</div><div class="info-card__value">hola@shoppingcanada.co</div><a href="mailto:hola@shoppingcanada.co" class="info-card__link">Enviar correo →</a></div></div>
+          <div class="info-card"><div class="info-card__icon">💬</div><div><div class="info-card__label">WhatsApp</div><div class="info-card__value">+57 300 000 0000<br/>Lun–Vie, 8am–6pm</div><a href="#" class="info-card__link">Abrir chat →</a></div></div>
+          <div class="info-card"><div class="info-card__icon">⏰</div><div><div class="info-card__label">Horario de atención</div><div class="info-card__value">Lunes a Viernes<br/>8:00 am – 6:00 pm (COT)</div></div></div>
+          <div class="info-card"><div class="info-card__icon">🚚</div><div><div class="info-card__label">Envíos</div><div class="info-card__value">Desde Canadá a toda Colombia<br/>7–15 días hábiles</div></div></div>
+          <div class="social-card"><div class="social-card__title">Síguenos en redes sociales</div><div class="social-card__links"><button class="social-btn">Instagram</button><button class="social-btn">Facebook</button><button class="social-btn">TikTok</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header"><div class="section-eyebrow" style="text-align:center;">Preguntas frecuentes</div><h2 class="section-title" style="text-align:center;">Lo que más nos preguntan</h2></div>
+        <div class="faq-grid">
+          <div class="faq-item"><div class="faq-item__q">¿Cuánto tarda el envío desde Canadá?</div><div class="faq-item__a">El tiempo estimado de entrega es de 7 a 15 días hábiles desde que se procesa el pedido.</div></div>
+          <div class="faq-item"><div class="faq-item__q">¿Los productos son originales?</div><div class="faq-item__a">Sí, todos nuestros productos son 100% auténticos importados directamente desde Canadá.</div></div>
+          <div class="faq-item"><div class="faq-item__q">¿Puedo hacer devoluciones?</div><div class="faq-item__a">Aceptamos devoluciones dentro de los 15 días posteriores a la recepción si el producto llega en mal estado.</div></div>
+          <div class="faq-item"><div class="faq-item__q">¿Cómo puedo rastrear mi pedido?</div><div class="faq-item__a">Una vez procesado tu pedido recibirás un correo con el número de rastreo para seguir tu envío.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="container"><div class="footer__brand"><img data-logo src="#" alt="Logo" class="footer__logo" /><span class="footer__copy">Shopping Canada © 2026</span></div><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="contacto.html">Contacto</a></div></div></footer>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>

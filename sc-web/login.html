@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Iniciar sesión</title>
+  <link rel="stylesheet" href="css/variables.css" /><link rel="stylesheet" href="css/base.css" /><link rel="stylesheet" href="css/navbar.css" /><link rel="stylesheet" href="css/components.css" /><link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar"><div class="container"><a href="index.html" class="navbar__brand"><img data-logo src="#" alt="Logo" class="navbar__logo" /><span class="navbar__name">Shopping Canada</span></a><div style="font-size:13px;color:#888;">¿No tienes cuenta? <a href="registro.html" style="color:var(--brown);font-weight:500;">Regístrate</a></div></div></nav>
+
+  <div class="auth-page">
+    <div class="auth-left">
+      <img data-logo src="#" alt="Logo" class="auth-left__logo" />
+      <div class="auth-left__title">Bienvenido a Shopping Canada</div>
+      <p class="auth-left__text">Accede a tu cuenta y descubre los mejores productos importados directamente desde Canadá.</p>
+      <div class="auth-left__img img-placeholder">[ Imagen productos / Canadá ]</div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-title">Iniciar sesión</div>
+      <div class="auth-subtitle">Ingresa tus datos para acceder a tu cuenta</div>
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="location.href='login.html'">Iniciar sesión</div>
+        <div class="auth-tab" onclick="location.href='registro.html'">Crear cuenta</div>
+      </div>
+      <form data-validate data-action="index.html">
+        <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" required /></div>
+        <div class="form-group"><label class="form-label">Contraseña</label><input class="form-input" type="password" placeholder="••••••••" required /></div>
+        <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+        <button type="submit" class="btn-primary btn-full" style="padding:14px 0;font-size:15px;margin-bottom:18px;">Iniciar sesión</button>
+      </form>
+      <div class="auth-divider"><div class="auth-divider__line"></div><div class="auth-divider__text">o continúa con</div><div class="auth-divider__line"></div></div>
+      <button class="social-login-btn">🌐 Continuar con Google</button>
+      <button class="social-login-btn">📘 Continuar con Facebook</button>
+      <div class="auth-footer-link">¿No tienes cuenta? <a href="registro.html">Regístrate gratis</a></div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><span class="footer__copy">Shopping Canada © 2026</span><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="contacto.html">Ayuda</a></div></div></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

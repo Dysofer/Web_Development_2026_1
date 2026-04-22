@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Inicio</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__brand">
+        <img data-logo src="#" alt="Logo" class="navbar__logo" />
+        <span class="navbar__name">Shopping Canada</span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="navbar__actions">
+        <div class="navbar__search"><span>🔍</span><input type="text" placeholder="Buscar productos..." /></div>
+        <a href="carrito.html" class="navbar__cart">Carrito <span class="navbar__cart-badge cart-count" style="display:none">0</span></a>
+        <button class="navbar__login" onclick="location.href='login.html'">Iniciar sesión</button>
+      </div>
+      <div class="navbar__hamburger"><span></span><span></span><span></span></div>
+    </div>
+    <div class="navbar__mobile-menu">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html">Iniciar sesión</a>
+    </div>
+  </nav>
+  <nav class="bottom-nav">
+    <div class="bottom-nav__item" onclick="location.href='index.html'"><div class="bottom-nav__icon active">🏠</div><span class="bottom-nav__label active">Inicio</span></div>
+    <div class="bottom-nav__item" onclick="location.href='catalogo.html'"><div class="bottom-nav__icon">🛍️</div><span class="bottom-nav__label">Catálogo</span></div>
+    <div class="bottom-nav__item" onclick="location.href='carrito.html'"><div class="bottom-nav__icon">🛒</div><span class="bottom-nav__label">Carrito</span></div>
+    <div class="bottom-nav__item" onclick="location.href='login.html'"><div class="bottom-nav__icon">👤</div><span class="bottom-nav__label">Cuenta</span></div>
+  </nav>
+
+  <div class="page-content">
+    <section class="hero">
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__eyebrow">Productos importados de Canadá</div>
+          <h1 class="hero__title">Trae lo mejor de Canadá a tu puerta</h1>
+          <p class="hero__sub">Calidad, estilo y exclusividad en cada producto. Directo desde Canadá hasta donde estés.</p>
+          <div class="hero__cta">
+            <a href="catalogo.html" class="btn-primary">Ver catálogo</a>
+            <a href="nosotros.html" class="btn-secondary">Saber más</a>
+          </div>
+        </div>
+        <div class="hero__img img-placeholder">[ Imagen hero – Canadá ]</div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="container">
+        <div class="section-header"><h2 class="section-title">Categorías</h2><a href="catalogo.html">Ver todas →</a></div>
+        <div class="cat-grid">
+          <div class="cat-pill" onclick="location.href='catalogo.html'"><div class="cat-pill__icon"></div><span class="cat-pill__name">Moda</span><span style="font-size:11px;color:#aaa;">48 productos</span></div>
+          <div class="cat-pill" onclick="location.href='catalogo.html'"><div class="cat-pill__icon"></div><span class="cat-pill__name">Tecnología</span><span style="font-size:11px;color:#aaa;">32 productos</span></div>
+          <div class="cat-pill" onclick="location.href='catalogo.html'"><div class="cat-pill__icon"></div><span class="cat-pill__name">Hogar</span><span style="font-size:11px;color:#aaa;">56 productos</span></div>
+          <div class="cat-pill" onclick="location.href='catalogo.html'"><div class="cat-pill__icon"></div><span class="cat-pill__name">Belleza</span><span style="font-size:11px;color:#aaa;">24 productos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section">
+      <div class="container">
+        <div class="section-header"><h2 class="section-title">Productos destacados</h2><a href="catalogo.html">Ver todos →</a></div>
+        <div class="prod-grid-3">
+          <div class="prod-card"><div class="prod-card__img img-placeholder"><span class="prod-card__badge">Nuevo</span>[ Foto ]</div><div class="prod-card__body"><div class="prod-card__category">Moda</div><div class="prod-card__name">Nombre del producto importado</div><div class="prod-card__footer"><span class="prod-card__price">$85.000 COP</span><button class="prod-card__btn" onclick="addToCart({id:1,name:'Producto 1',price:85000})">Agregar</button></div></div></div>
+          <div class="prod-card"><div class="prod-card__img img-placeholder">[ Foto ]</div><div class="prod-card__body"><div class="prod-card__category">Hogar</div><div class="prod-card__name">Nombre del producto importado</div><div class="prod-card__footer"><span class="prod-card__price">$120.000 COP</span><button class="prod-card__btn" onclick="addToCart({id:2,name:'Producto 2',price:120000})">Agregar</button></div></div></div>
+          <div class="prod-card"><div class="prod-card__img img-placeholder"><span class="prod-card__badge">Oferta</span>[ Foto ]</div><div class="prod-card__body"><div class="prod-card__category">Belleza</div><div class="prod-card__name">Nombre del producto importado</div><div class="prod-card__footer"><span class="prod-card__price">$67.000 COP</span><button class="prod-card__btn" onclick="addToCart({id:3,name:'Producto 3',price:67000})">Agregar</button></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo-banner">
+      <div class="container">
+        <div><div class="promo-banner__title">Envíos desde Canadá directo a ti</div><div class="promo-banner__sub">Productos auténticos con garantía de calidad internacional</div></div>
+        <button class="promo-banner__btn" onclick="location.href='nosotros.html'">Conocer más</button>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="container"><div class="footer__brand"><img data-logo src="#" alt="Logo" class="footer__logo" /><span class="footer__copy">Shopping Canada © 2026</span></div><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="contacto.html">Contacto</a><a href="#">Instagram</a></div></div></footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

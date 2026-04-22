@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Registro</title>
+  <link rel="stylesheet" href="css/variables.css" /><link rel="stylesheet" href="css/base.css" /><link rel="stylesheet" href="css/navbar.css" /><link rel="stylesheet" href="css/components.css" /><link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar"><div class="container"><a href="index.html" class="navbar__brand"><img data-logo src="#" alt="Logo" class="navbar__logo" /><span class="navbar__name">Shopping Canada</span></a><div style="font-size:13px;color:#888;">¿Ya tienes cuenta? <a href="login.html" style="color:var(--brown);font-weight:500;">Inicia sesión</a></div></div></nav>
+
+  <div class="auth-page">
+    <div class="auth-left brown">
+      <img data-logo src="#" alt="Logo" class="auth-left__logo" />
+      <div class="auth-left__title">Únete a Shopping Canada</div>
+      <p class="auth-left__text">Crea tu cuenta gratis y empieza a disfrutar de los mejores productos importados desde Canadá.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-item__icon">🍁</div><div><div class="benefit-item__title">Productos auténticos</div><div class="benefit-item__text">Importados directamente desde Canadá</div></div></div>
+        <div class="benefit-item"><div class="benefit-item__icon">🚚</div><div><div class="benefit-item__title">Envío rastreable</div><div class="benefit-item__text">Sigue tu pedido en tiempo real</div></div></div>
+        <div class="benefit-item"><div class="benefit-item__icon">⭐</div><div><div class="benefit-item__title">Ofertas exclusivas</div><div class="benefit-item__text">Accede a descuentos para miembros</div></div></div>
+        <div class="benefit-item"><div class="benefit-item__icon">🔒</div><div><div class="benefit-item__title">Compra segura</div><div class="benefit-item__text">Pagos encriptados y protegidos</div></div></div>
+      </div>
+    </div>
+
+    <div class="auth-right wide">
+      <div class="auth-title">Crear cuenta</div>
+      <div class="auth-subtitle">Completa tus datos para registrarte</div>
+      <div class="auth-tabs">
+        <div class="auth-tab" onclick="location.href='login.html'">Iniciar sesión</div>
+        <div class="auth-tab active" onclick="location.href='registro.html'">Crear cuenta</div>
+      </div>
+      <form data-validate data-action="index.html">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Nombre</label><input class="form-input" type="text" placeholder="Tu nombre" required /></div>
+          <div class="form-group"><label class="form-label">Apellido</label><input class="form-input" type="text" placeholder="Tu apellido" required /></div>
+        </div>
+        <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" required /></div>
+        <div class="form-group"><label class="form-label">Teléfono</label><input class="form-input" type="tel" placeholder="+57 300 000 0000" /></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Ciudad</label><input class="form-input" type="text" placeholder="Tu ciudad" /></div>
+          <div class="form-group"><label class="form-label">Departamento</label><select class="form-select"><option>Seleccionar</option><option selected>Valle del Cauca</option><option>Cundinamarca</option><option>Antioquia</option></select></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contraseña</label>
+          <input class="form-input" type="password" placeholder="Mínimo 8 caracteres" required id="pass-input" oninput="updateStrength(this.value)" />
+          <div class="password-strength">
+            <div class="strength-seg" id="s1"></div>
+            <div class="strength-seg" id="s2"></div>
+            <div class="strength-seg" id="s3"></div>
+            <div class="strength-seg" id="s4"></div>
+          </div>
+          <div class="password-hint">Usa al menos 8 caracteres con números y letras</div>
+        </div>
+        <div class="form-group"><label class="form-label">Confirmar contraseña</label><input class="form-input" type="password" placeholder="Repite tu contraseña" required /></div>
+        <div class="terms-check">
+          <input type="checkbox" required />
+          <div class="terms-check__text">Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a> de Shopping Canada</div>
+        </div>
+        <button type="submit" class="btn-primary btn-full" style="padding:14px 0;font-size:15px;margin-bottom:16px;">Crear mi cuenta</button>
+      </form>
+      <div class="auth-divider"><div class="auth-divider__line"></div><div class="auth-divider__text">o regístrate con</div><div class="auth-divider__line"></div></div>
+      <button class="social-login-btn">🌐 Registrarse con Google</button>
+      <button class="social-login-btn">📘 Registrarse con Facebook</button>
+      <div class="auth-footer-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><span class="footer__copy">Shopping Canada © 2026</span><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="contacto.html">Ayuda</a></div></div></footer>
+  <script src="js/main.js"></script>
+  <script>
+    function updateStrength(val) {
+      const segs = [document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3'),document.getElementById('s4')];
+      const score = Math.min(4, Math.floor(val.length / 3));
+      segs.forEach((s, i) => s.classList.toggle('filled', i < score));
+    }
+  </script>
+</body>
+</html>

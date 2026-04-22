@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Home Desktop</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f5f3ef; color: #2c1a0e; }
+
+    /* ── TOKENS ── */
+    :root {
+      --beige: #e0d7c6;
+      --beige-dark: #c8bfb0;
+      --brown: #643c23;
+      --brown-light: #8a5535;
+      --brown-dark: #3a2210;
+      --text-muted: #7a5035;
+      --bg-section: #f5f3ef;
+      --white: #ffffff;
+      --border: #d8d0c4;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 80px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--beige); border: 2px solid var(--beige-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--brown);
+    }
+    .nav-brand-name { font-size: 15px; font-weight: 600; color: var(--brown); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 14px; color: #555; text-decoration: none; }
+    .nav-links a:hover { color: var(--brown); }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-search { font-size: 13px; color: #888; cursor: pointer; }
+    .nav-cart { font-size: 13px; color: #555; cursor: pointer; }
+    .nav-login {
+      font-size: 13px; padding: 8px 20px; background: var(--brown);
+      color: var(--beige); border: none; border-radius: 6px; cursor: pointer;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex; align-items: center; gap: 60px;
+      padding: 72px 80px;
+      background: var(--beige);
+    }
+    .hero-content { flex: 1; }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--brown); text-transform: uppercase; margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 52px; font-weight: 700; line-height: 1.1;
+      color: var(--brown-dark); margin-bottom: 16px;
+    }
+    .hero-subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6; }
+    .hero-cta { display: flex; gap: 12px; }
+    .btn-primary {
+      padding: 14px 32px; background: var(--brown); color: var(--beige);
+      border: none; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer;
+    }
+    .btn-secondary {
+      padding: 14px 32px; background: transparent; color: var(--brown);
+      border: 2px solid var(--brown); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer;
+    }
+    .hero-image {
+      flex: 1; height: 380px; background: var(--beige-dark);
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--text-muted);
+    }
+
+    /* ── CATEGORIES ── */
+    .categories { padding: 64px 80px; background: var(--white); }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;
+    }
+    .section-title { font-size: 28px; font-weight: 600; color: var(--brown-dark); }
+    .section-link { font-size: 14px; color: var(--brown); text-decoration: none; }
+    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .cat-card {
+      border: 1px solid var(--border); border-radius: 12px; padding: 28px 16px;
+      text-align: center; cursor: pointer; transition: border-color 0.2s;
+    }
+    .cat-card:hover { border-color: var(--brown); }
+    .cat-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--beige); margin: 0 auto 14px;
+    }
+    .cat-name { font-size: 14px; font-weight: 500; color: var(--brown-dark); }
+    .cat-count { font-size: 12px; color: #999; margin-top: 4px; }
+
+    /* ── FEATURED PRODUCTS ── */
+    .products { padding: 64px 80px; background: var(--bg-section); }
+    .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .prod-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+    }
+    .prod-img {
+      height: 200px; background: #ece8e0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .prod-body { padding: 16px; }
+    .prod-tag {
+      display: inline-block; font-size: 10px; padding: 3px 8px;
+      background: var(--beige); color: var(--brown); border-radius: 4px; margin-bottom: 8px;
+    }
+    .prod-name { font-size: 15px; font-weight: 500; color: var(--brown-dark); margin-bottom: 6px; }
+    .prod-price { font-size: 17px; font-weight: 600; color: var(--brown); margin-bottom: 14px; }
+    .prod-btn {
+      width: 100%; padding: 10px 0; background: var(--brown); color: var(--beige);
+      border: none; border-radius: 6px; font-size: 13px; cursor: pointer;
+    }
+
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      background: var(--brown); padding: 64px 80px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .promo-content {}
+    .promo-title { font-size: 36px; font-weight: 700; color: var(--beige); margin-bottom: 10px; }
+    .promo-sub { font-size: 15px; color: #c8a882; }
+    .promo-cta {
+      padding: 14px 36px; background: var(--beige); color: var(--brown);
+      border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 80px;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-copy { font-size: 13px; color: #999; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: #888; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">SC</div>
+      <span class="nav-brand-name">Shopping Canada</span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Inicio</a>
+      <a href="#">Catálogo</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Contacto</a>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-search">Buscar</span>
+      <span class="nav-cart">Carrito (0)</span>
+      <button class="nav-login">Iniciar sesión</button>
+    </div>
+  </nav>
+
+  <!-- PRODUCTOS IMPORTADOS -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Productos importados de Canadá</div>
+      <h1 class="hero-title">Trae lo mejor<br>de Canadá<br>a tu puerta</h1>
+      <p class="hero-subtitle">Calidad, estilo y exclusividad en cada producto.<br>Directo desde Canadá hasta donde estés.</p>
+      <div class="hero-cta">
+        <button class="btn-primary">Ver catálogo</button>
+        <button class="btn-secondary">Saber más</button>
+      </div>
+    </div>
+    <div class="hero-image">Imagen hero / banner principal</div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <div class="section-header">
+      <h2 class="section-title">Categorías</h2>
+      <a href="#" class="section-link">Ver todas →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon"></div>
+        <div class="cat-name">Moda</div>
+        <div class="cat-count">48 productos</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"></div>
+        <div class="cat-name">Tecnología</div>
+        <div class="cat-count">32 productos</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"></div>
+        <div class="cat-name">Hogar</div>
+        <div class="cat-count">56 productos</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"></div>
+        <div class="cat-name">Belleza</div>
+        <div class="cat-count">24 productos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS DESTACADOS -->
+  <section class="products">
+    <div class="section-header">
+      <h2 class="section-title">Productos destacados</h2>
+      <a href="#" class="section-link">Ver todos →</a>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-img">Foto producto 1</div>
+        <div class="prod-body">
+          <span class="prod-tag">Moda</span>
+          <div class="prod-name">Nombre del producto</div>
+          <div class="prod-price">$85.000 COP</div>
+          <button class="prod-btn">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">Foto producto 2</div>
+        <div class="prod-body">
+          <span class="prod-tag">Hogar</span>
+          <div class="prod-name">Nombre del producto</div>
+          <div class="prod-price">$120.000 COP</div>
+          <button class="prod-btn">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">Foto producto 3</div>
+        <div class="prod-body">
+          <span class="prod-tag">Belleza</span>
+          <div class="prod-name">Nombre del producto</div>
+          <div class="prod-price">$67.000 COP</div>
+          <button class="prod-btn">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER DE PROMOCION -->
+  <section class="promo-banner">
+    <div class="promo-content">
+      <div class="promo-title">Envíos desde Canadá<br>directo a ti</div>
+      <div class="promo-sub">Productos auténticos con garantía de calidad internacional</div>
+    </div>
+    <button class="promo-cta">Conocer más</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="nav-logo">SC</div>
+      <span class="footer-copy">Shopping Canada © 2026</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+  </footer>
+
+</body>
+</html>

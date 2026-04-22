@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Producto</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar"><div class="container"><a href="index.html" class="navbar__brand"><img data-logo src="#" alt="Logo" class="navbar__logo" /><span class="navbar__name">Shopping Canada</span></a><div class="navbar__links"><a href="index.html">Inicio</a><a href="catalogo.html" class="active">Catálogo</a><a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a></div><div class="navbar__actions"><div class="navbar__search"><span>🔍</span><input type="text" placeholder="Buscar..." /></div><a href="carrito.html" class="navbar__cart">Carrito <span class="navbar__cart-badge cart-count" style="display:none">0</span></a><button class="navbar__login" onclick="location.href='login.html'">Iniciar sesión</button></div><div class="navbar__hamburger"><span></span><span></span><span></span></div></div><div class="navbar__mobile-menu"><a href="index.html">Inicio</a><a href="catalogo.html" class="active">Catálogo</a><a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a></div></nav>
+  <nav class="bottom-nav"><div class="bottom-nav__item" onclick="location.href='index.html'"><div class="bottom-nav__icon">🏠</div><span class="bottom-nav__label">Inicio</span></div><div class="bottom-nav__item" onclick="location.href='catalogo.html'"><div class="bottom-nav__icon active">🛍️</div><span class="bottom-nav__label active">Catálogo</span></div><div class="bottom-nav__item" onclick="location.href='carrito.html'"><div class="bottom-nav__icon">🛒</div><span class="bottom-nav__label">Carrito</span></div><div class="bottom-nav__item"><div class="bottom-nav__icon">👤</div><span class="bottom-nav__label">Cuenta</span></div></nav>
+
+  <div class="page-content">
+    <div style="background:var(--white);border-bottom:1px solid var(--border);padding:12px 0;">
+      <div class="container"><div class="breadcrumb" style="margin:0;">Inicio › <span>Catálogo</span> › <span>Moda</span> › Nombre del producto</div></div>
+    </div>
+
+    <!-- DETALLE PRODUCTO -->
+    <section class="product-section">
+      <div class="container">
+        <div class="gallery">
+          <div class="gallery__thumbs">
+            <div class="gallery__thumb active img-placeholder">[ 1 ]</div>
+            <div class="gallery__thumb img-placeholder">[ 2 ]</div>
+            <div class="gallery__thumb img-placeholder">[ 3 ]</div>
+            <div class="gallery__thumb img-placeholder">[ 4 ]</div>
+          </div>
+          <div class="gallery__main img-placeholder">
+            <span class="gallery__badge">🍁 Importado de Canadá</span>
+            [ Foto principal del producto ]
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="product-info__category">Moda · Mujer</div>
+          <h1 class="product-info__name">Nombre completo del producto importado</h1>
+          <div class="product-info__origin">
+            <span class="origin-badge">🍁 Canadá</span>
+            <span style="font-size:13px;color:var(--brown-muted);">Producto auténtico importado</span>
+          </div>
+          <div class="product-info__price">$85.000 COP</div>
+          <div class="product-info__price-note">Precio incluye importación. Envío calculado al finalizar.</div>
+          <div class="product-divider"></div>
+          <p class="product-info__desc">Descripción detallada del producto. Aquí va información sobre materiales, origen, características especiales y beneficios del producto importado desde Canadá. Máxima calidad garantizada.</p>
+
+          <div class="option-label">Talla</div>
+          <div class="size-options">
+            <div class="size-btn">XS</div>
+            <div class="size-btn active">S</div>
+            <div class="size-btn">M</div>
+            <div class="size-btn">L</div>
+            <div class="size-btn">XL</div>
+          </div>
+
+          <div class="option-label">Color</div>
+          <div class="color-options">
+            <div class="color-dot active" style="background:#643c23;"></div>
+            <div class="color-dot" style="background:#e0d7c6;border:1px solid #c8bfb0;"></div>
+            <div class="color-dot" style="background:#2c1a0e;"></div>
+            <div class="color-dot" style="background:#8a5535;"></div>
+          </div>
+
+          <div class="qty-row">
+            <span class="option-label" style="margin-bottom:0;">Cantidad</span>
+            <div class="qty-control">
+              <button class="qty-control__btn qty-minus">−</button>
+              <div class="qty-control__val">1</div>
+              <button class="qty-control__btn qty-plus">+</button>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn-primary btn-full" style="padding:15px 0;font-size:15px;" onclick="addToCart({id:1,name:'Producto importado',price:85000})">Agregar al carrito</button>
+            <button class="btn-wishlist">♡</button>
+          </div>
+          <div class="shipping-note">🚚 Envío desde Canadá · Entrega estimada 7–15 días hábiles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELACIONADOS -->
+    <section class="related-section">
+      <div class="container">
+        <h2>Productos relacionados</h2>
+        <div class="prod-grid-4">
+          <div class="prod-card"><div class="prod-card__img img-placeholder" style="height:160px;">[ Foto ]</div><div class="prod-card__body"><div class="prod-card__name">Nombre producto</div><div class="prod-card__price" style="margin-top:4px;">$92.000 COP</div></div></div>
+          <div class="prod-card"><div class="prod-card__img img-placeholder" style="height:160px;">[ Foto ]</div><div class="prod-card__body"><div class="prod-card__name">Nombre producto</div><div class="prod-card__price" style="margin-top:4px;">$67.000 COP</div></div></div>
+          <div class="prod-card"><div class="prod-card__img img-placeholder" style="height:160px;">[ Foto ]</div><div class="prod-card__body"><div class="prod-card__name">Nombre producto</div><div class="prod-card__price" style="margin-top:4px;">$110.000 COP</div></div></div>
+          <div class="prod-card"><div class="prod-card__img img-placeholder" style="height:160px;">[ Foto ]</div><div class="prod-card__body"><div class="prod-card__name">Nombre producto</div><div class="prod-card__price" style="margin-top:4px;">$78.000 COP</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer"><div class="container"><div class="footer__brand"><img data-logo src="#" alt="Logo" class="footer__logo" /><span class="footer__copy">Shopping Canada © 2026</span></div><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="contacto.html">Contacto</a></div></div></footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

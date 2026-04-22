@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Canada – Confirmación</title>
+  <link rel="stylesheet" href="css/variables.css" /><link rel="stylesheet" href="css/base.css" /><link rel="stylesheet" href="css/navbar.css" /><link rel="stylesheet" href="css/components.css" /><link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <nav class="navbar"><div class="container"><a href="index.html" class="navbar__brand"><img data-logo src="#" alt="Logo" class="navbar__logo" /><span class="navbar__name">Shopping Canada</span></a><div class="navbar__actions"><span style="font-size:12px;color:#aaa;">🔒 Compra verificada</span></div></div></nav>
+
+  <div class="page-content">
+    <div style="background:var(--white);border-bottom:1px solid var(--border);padding:16px 0;">
+      <div class="container">
+        <div class="stepper">
+          <div class="stepper__step done"><div class="stepper__num">✓</div> Carrito</div>
+          <div class="stepper__arrow">›</div>
+          <div class="stepper__step done"><div class="stepper__num">✓</div> Datos de envío</div>
+          <div class="stepper__arrow">›</div>
+          <div class="stepper__step done"><div class="stepper__num">✓</div> Pago</div>
+          <div class="stepper__arrow">›</div>
+          <div class="stepper__step active" style="color:#2d7a4f;border-bottom-color:#2d7a4f;"><div class="stepper__num" style="background:#2d7a4f;color:white;border-color:#2d7a4f;">✓</div> ¡Confirmado!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="success-banner">
+      <div class="container">
+        <div class="success-banner__check">✓</div>
+        <div>
+          <div class="success-banner__title">¡Pedido confirmado!</div>
+          <div class="success-banner__sub">Gracias por tu compra. Te enviaremos un correo con todos los detalles y número de rastreo.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirmation-page">
+      <div class="container">
+        <div class="confirmation-left">
+          <div class="card">
+            <div style="font-size:15px;font-weight:600;color:var(--brown-dark);margin-bottom:18px;">📋 Detalles del pedido</div>
+            <div class="info-grid">
+              <div><div class="info-item__label">Número de pedido</div><div class="order-num-big">#SC-2026-00847</div></div>
+              <div><div class="info-item__label">Fecha</div><div class="info-item__value">21 de abril, 2026</div></div>
+              <div><div class="info-item__label">Envío a</div><div class="info-item__value">Cali, Valle del Cauca</div></div>
+              <div><div class="info-item__label">Entrega estimada</div><div class="info-item__value">7–15 días hábiles</div></div>
+              <div><div class="info-item__label">Método de pago</div><div class="info-item__value">Tarjeta •••• 4242</div></div>
+              <div><div class="info-item__label">Estado</div><div class="info-item__value status-ok">● En procesamiento</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-size:15px;font-weight:600;color:var(--brown-dark);margin-bottom:16px;">🛒 Productos del pedido</div>
+            <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center;"><div class="order-item__img img-placeholder">[ ]</div><div style="flex:1;"><div class="order-item__name" style="font-size:14px;font-weight:500;color:var(--brown-dark);">Nombre del producto</div><div class="order-item__variant">Talla S · Café · x1</div></div><span class="order-item__price">$85.000 COP</span></div>
+            <div style="display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center;"><div class="order-item__img img-placeholder">[ ]</div><div style="flex:1;"><div class="order-item__name" style="font-size:14px;font-weight:500;color:var(--brown-dark);">Nombre del producto</div><div class="order-item__variant">x2</div></div><span class="order-item__price">$240.000 COP</span></div>
+            <div style="display:flex;gap:16px;padding:14px 0;align-items:center;"><div class="order-item__img img-placeholder">[ ]</div><div style="flex:1;"><div class="order-item__name" style="font-size:14px;font-weight:500;color:var(--brown-dark);">Nombre del producto</div><div class="order-item__variant">x1</div></div><span class="order-item__price">$67.000 COP</span></div>
+          </div>
+
+          <div class="shipping-card">
+            <div class="shipping-card__title">🚚 Información de envío</div>
+            <div class="shipping-card__text">Tu pedido está siendo procesado desde Canadá. En las próximas 24–48 horas recibirás un correo con el número de rastreo. Tiempo estimado: 7 a 15 días hábiles.</div>
+          </div>
+        </div>
+
+        <div class="confirmation-right">
+          <div class="card">
+            <div class="summary-title">Resumen del pago</div>
+            <div class="summary-row"><span>Subtotal</span><span>$392.000</span></div>
+            <div class="summary-row"><span>Envío internacional</span><span>$45.000</span></div>
+            <div class="summary-row total"><span>Total pagado</span><span>$437.000 COP</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:#2d7a4f;font-weight:600;margin-top:10px;"><span>✓ Pago aprobado</span><span>Tarjeta •••• 4242</span></div>
+          </div>
+          <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+            <button class="btn-secondary btn-full" style="padding:11px 0;">🔍 Rastrear mi pedido</button>
+            <button class="btn-primary btn-full" style="padding:13px 0;" onclick="location.href='catalogo.html'">Seguir comprando</button>
+            <button class="btn-secondary btn-full" style="padding:11px 0;">Ver mis pedidos</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer"><div class="container"><div class="footer__brand"><img data-logo src="#" alt="Logo" class="footer__logo" /><span class="footer__copy">Shopping Canada © 2026</span></div><div class="footer__links"><a href="#">Términos</a><a href="#">Privacidad</a></div></div></footer>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
