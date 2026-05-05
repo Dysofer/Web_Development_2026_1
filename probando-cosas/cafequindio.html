@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Quindío - Expertos en café</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3ebfbf;
+    --teal-dark: #2aa0a0;
+    --teal-light: #e8f8f8;
+    --dark: #1a1a1a;
+    --gray: #555;
+    --light-gray: #f5f5f3;
+    --white: #fff;
+    --gold: #c9a84c;
+    --accent-pink: #e8607a;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ANNOUNCEMENT BAR */
+  .announcement {
+    background: var(--teal);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid #eee;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  nav {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--teal);
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after { width: 100%; }
+  nav a:hover { color: var(--teal); }
+
+  .header-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .header-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--dark);
+    transition: color 0.2s;
+  }
+
+  .header-actions button:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    background: linear-gradient(135deg, #1a2a2a 0%, #0d1f1f 50%, #1a2a2a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 50%, rgba(62,191,191,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 300;
+    line-height: 0.9;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+  }
+
+  .hero-title span { font-style: italic; color: var(--teal); }
+
+  .hero-subtitle {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-badge {
+    position: absolute;
+    right: 15%;
+    top: 25%;
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(62,191,191,0.3);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    animation: rotateSlow 20s linear infinite;
+  }
+
+  .hero-badge-inner {
+    font-family: var(--font-display);
+    font-size: 38px;
+    color: var(--gold);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .hero-badge-text {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+
+  .hero-mickey {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    opacity: 0.9;
+  }
+
+  .hero-mickey-box {
+    width: 260px;
+    height: 260px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mickey-art {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-limited {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--teal);
+    color: white;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 48px;
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(62,191,191,0.4);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  /* BESTSELLERS */
+  .section {
+    padding: 100px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .section-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 60px;
+  }
+
+  .tab-btn {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 24px;
+    color: #ccc;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .tab-btn.active {
+    color: var(--dark);
+  }
+
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: var(--teal);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .product-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .product-card:hover { transform: translateY(-6px); }
+
+  .product-img-wrap {
+    position: relative;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-img-wrap img {
+    width: 70%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform 0.4s;
+  }
+
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+  .product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--teal);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+
+  .product-badge.gold { background: var(--gold); }
+
+  .product-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .product-price {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  /* LAUNCH SECTION */
+  .launch-section {
+    background: var(--light-gray);
+    padding: 100px 48px;
+  }
+
+  .launch-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .launch-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .launch-title {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .launch-badge {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+
+  .launch-price {
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .launch-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 36px;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+    width: fit-content;
+    border: 1px solid #ddd;
+  }
+
+  .qty-btn {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .qty-btn:hover { background: #f0f0f0; }
+  .qty-num {
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 14px;
+    font-family: var(--font-body);
+  }
+
+  .launch-img-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .launch-box {
+    width: 380px;
+    height: 380px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .launch-box svg {
+    width: 280px;
+    height: 280px;
+  }
+
+  .launch-thumbnails {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .thumb {
+    width: 64px;
+    height: 64px;
+    background: var(--light-gray);
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .thumb.active { border-color: var(--teal); }
+  .thumb svg { width: 44px; height: 44px; }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--teal);
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .newsletter-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .newsletter-title {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 0;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    font-size: 13px;
+    font-family: var(--font-body);
+    outline: none;
+    color: var(--dark);
+  }
+
+  .newsletter-input::placeholder { color: #aaa; letter-spacing: 1px; }
+
+  .newsletter-btn {
+    padding: 16px 32px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.2s;
+  }
+
+  .newsletter-btn:hover { background: #333; }
+
+  /* FOOTER */
+  footer {
+    background: white;
+    padding: 80px 48px 40px;
+    border-top: 1px solid #eee;
+  }
+
+  .footer-social {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .footer-social-handle {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--dark);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .social-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .social-icon:hover { background: var(--teal); transform: translateY(-3px); }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 12px;
+  }
+
+  .footer-col ul li a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 13px;
+    transition: color 0.2s;
+    line-height: 1.6;
+  }
+
+  .footer-col ul li a:hover { color: var(--teal); }
+
+  .footer-col p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--gray);
+  }
+
+  .footer-newsletter-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    font-family: var(--font-body);
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .footer-newsletter-input:focus { border-color: var(--teal); }
+
+  .footer-newsletter-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.2s;
+  }
+
+  .footer-newsletter-btn:hover { background: var(--teal); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: 1px;
+    padding-top: 32px;
+    border-top: 1px solid #eee;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* PRODUCT COLORS - bag gradients */
+  .bag-teal { background: linear-gradient(145deg, #3ebfbf, #2a9999); }
+  .bag-dark { background: linear-gradient(145deg, #1a2a1a, #2a3a2a); }
+  .bag-wine { background: linear-gradient(145deg, #8b1a4a, #6b1038); }
+  .bag-disney { background: linear-gradient(145deg, #f0e8d0, #e8d8b0); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .launch-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+    .hero-mickey { display: none; }
+    .hero-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement -->
+<div class="announcement">
+  ENVÍO GRATIS POR COMPRAS SUPERIORES A $250.000
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">Café Quindío</a>
+    <nav>
+      <a href="#">Café</a>
+      <a href="#">Cápsulas</a>
+      <a href="#">Regalos</a>
+      <a href="#">Productos de Café</a>
+      <a href="#">Sale</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Tiendas</a>
+      <a href="#">Blogs</a>
+    </nav>
+    <div class="header-actions">
+      <button title="Buscar">🔍</button>
+      <button title="Cuenta">👤</button>
+      <button title="Carrito">🛒</button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Mickey Box Left -->
+  <div class="hero-mickey">
+    <div class="hero-mickey-box">
+      <div class="hero-limited">Edición Limitada</div>
+      <svg class="mickey-art" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Floral wreath -->
+        <circle cx="100" cy="100" r="70" stroke="#3ebfbf" stroke-width="0" fill="none"/>
+        <!-- Leaves and flowers around -->
+        <g opacity="0.85">
+          <!-- Top leaves -->
+          <ellipse cx="100" cy="34" rx="6" ry="12" fill="#3ebfbf" transform="rotate(0 100 34)"/>
+          <ellipse cx="120" cy="38" rx="5" ry="10" fill="#6dcfcf" transform="rotate(20 120 38)"/>
+          <ellipse cx="80" cy="38" rx="5" ry="10" fill="#6dcfcf" transform="rotate(-20 80 38)"/>
+          <!-- Right side -->
+          <ellipse cx="158" cy="72" rx="5" ry="10" fill="#3ebfbf" transform="rotate(70 158 72)"/>
+          <ellipse cx="162" cy="95" rx="5" ry="10" fill="#6dcfcf" transform="rotate(90 162 95)"/>
+          <ellipse cx="155" cy="118" rx="5" ry="10" fill="#3ebfbf" transform="rotate(110 155 118)"/>
+          <!-- Bottom -->
+          <ellipse cx="120" cy="160" rx="5" ry="10" fill="#6dcfcf" transform="rotate(160 120 160)"/>
+          <ellipse cx="100" cy="164" rx="6" ry="12" fill="#3ebfbf" transform="rotate(180 100 164)"/>
+          <ellipse cx="80" cy="160" rx="5" ry="10" fill="#6dcfcf" transform="rotate(200 80 160)"/>
+          <!-- Left side -->
+          <ellipse cx="45" cy="118" rx="5" ry="10" fill="#3ebfbf" transform="rotate(250 45 118)"/>
+          <ellipse cx="40" cy="95" rx="5" ry="10" fill="#6dcfcf" transform="rotate(270 40 95)"/>
+          <ellipse cx="44" cy="72" rx="5" ry="10" fill="#3ebfbf" transform="rotate(290 44 72)"/>
+          <!-- Flowers -->
+          <circle cx="140" cy="52" r="8" fill="#5ecfcf" opacity="0.7"/>
+          <circle cx="52" cy="52" r="8" fill="#5ecfcf" opacity="0.7"/>
+          <circle cx="148" cy="140" r="7" fill="#5ecfcf" opacity="0.7"/>
+          <circle cx="52" cy="140" r="7" fill="#5ecfcf" opacity="0.7"/>
+          <!-- Coffee beans -->
+          <ellipse cx="134" cy="78" rx="4" ry="6" fill="#c9a84c" transform="rotate(30 134 78)"/>
+          <ellipse cx="66" cy="78" rx="4" ry="6" fill="#c9a84c" transform="rotate(-30 66 78)"/>
+          <ellipse cx="134" cy="122" rx="4" ry="6" fill="#c9a84c" transform="rotate(-30 134 122)"/>
+          <ellipse cx="66" cy="122" rx="4" ry="6" fill="#c9a84c" transform="rotate(30 66 122)"/>
+        </g>
+        <!-- Mickey Head -->
+        <circle cx="100" cy="95" r="30" fill="#2a1a0a"/>
+        <!-- Mickey Ears -->
+        <circle cx="76" cy="70" r="18" fill="#2a1a0a"/>
+        <circle cx="124" cy="70" r="18" fill="#2a1a0a"/>
+        <!-- Text below -->
+        <text x="100" y="148" font-family="Georgia, serif" font-size="10" fill="#c9a84c" text-anchor="middle" font-style="italic">Mickey Mouse</text>
+        <text x="100" y="164" font-family="Georgia, serif" font-size="8" fill="#888" text-anchor="middle" font-style="italic">Set de café</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Disney × Café Quindío</p>
+    <h1 class="hero-title">
+      <span>Mickey</span><br>Mouse
+    </h1>
+    <p class="hero-subtitle">Colección Especial — Set de Café</p>
+    <a href="#" class="btn-primary">Descubrir Ahora</a>
+  </div>
+
+  <!-- Badge Right -->
+  <div class="hero-badge">
+    <div class="hero-badge-inner">88</div>
+    <div class="hero-badge-text">Puntos SCA</div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- Bestsellers -->
+<section style="padding: 80px 0; background: white;">
+  <div style="max-width:1400px; margin:0 auto; padding: 0 48px;">
+    <p class="section-eyebrow">Los más vendidos</p>
+    <div class="section-tabs">
+      <button class="tab-btn active" onclick="switchTab(this, 'cafe')">Café</button>
+      <button class="tab-btn" onclick="switchTab(this, 'regalos')">Regalos</button>
+    </div>
+
+    <div class="products-grid" id="products-cafe">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 180 260" style="width:70%;height:80%;object-fit:contain">
+            <defs>
+              <linearGradient id="disneyGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f0e0b0"/>
+                <stop offset="100%" stop-color="#d4c070"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="10" width="140" height="240" rx="12" fill="url(#disneyGrad)"/>
+            <text x="90" y="80" font-family="serif" font-size="14" fill="#1a5a2a" text-anchor="middle" font-weight="bold">Disney</text>
+            <text x="90" y="110" font-family="serif" font-size="13" fill="#1a5a2a" text-anchor="middle" font-style="italic">Encanto</text>
+            <rect x="30" y="130" width="120" height="2" fill="#c8a040" opacity="0.4"/>
+            <text x="90" y="170" font-family="sans-serif" font-size="9" fill="#555" text-anchor="middle">COSECHA ESPECIAL</text>
+            <text x="90" y="195" font-family="sans-serif" font-size="8" fill="#777" text-anchor="middle">125g · MOLIDO</text>
+          </svg>
+          <div class="product-badge">Holido</div>
+        </div>
+        <div class="product-name">Café Disney - Encanto</div>
+        <div class="product-price">$56.000</div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 180 260" style="width:70%;height:80%;object-fit:contain">
+            <defs>
+              <linearGradient id="geishaGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#3ebfbf"/>
+                <stop offset="100%" stop-color="#2a9090"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="10" width="140" height="240" rx="12" fill="url(#geishaGrad)"/>
+            <text x="90" y="80" font-family="serif" font-size="18" fill="white" text-anchor="middle" font-style="italic">Café</text>
+            <text x="90" y="115" font-family="serif" font-size="22" fill="#c9a84c" text-anchor="middle" font-weight="bold">Geisha</text>
+            <text x="90" y="170" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.8)" text-anchor="middle">ORIGEN ÚNICO</text>
+            <text x="90" y="195" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">125g · GRANO</text>
+            <circle cx="90" cy="220" r="12" fill="#c9a84c" opacity="0.8"/>
+            <text x="90" y="224" font-family="sans-serif" font-size="7" fill="white" text-anchor="middle">SCA</text>
+          </svg>
+          <div class="product-badge gold">88 Puntos SCA</div>
+        </div>
+        <div class="product-name">Café Geisha</div>
+        <div class="product-price">$130.800</div>
+        <div class="stars">★★★★☆ <span style="color:#999;font-size:11px;">(4.0)</span></div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 180 260" style="width:70%;height:80%;object-fit:contain">
+            <defs>
+              <linearGradient id="berryGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#8b1a4a"/>
+                <stop offset="100%" stop-color="#6b1038"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="10" width="140" height="240" rx="12" fill="url(#berryGrad)"/>
+            <rect x="30" y="20" width="120" height="220" rx="8" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity="0.5"/>
+            <text x="90" y="75" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">100% CAFÉ DEL QUINDÍO</text>
+            <text x="90" y="115" font-family="serif" font-size="18" fill="white" text-anchor="middle" font-style="italic">Berry</text>
+            <text x="90" y="145" font-family="serif" font-size="18" fill="white" text-anchor="middle" font-style="italic">Bloom</text>
+            <text x="90" y="185" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">COSECHA ESPECIAL · 125g</text>
+          </svg>
+          <div class="product-badge gold">87 Puntos SCA</div>
+        </div>
+        <div class="product-name">Café Berry Bloom</div>
+        <div class="product-price">$107.500</div>
+        <div class="stars">★★★★★ <span style="color:#999;font-size:11px;">(5.0)</span></div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 180 260" style="width:70%;height:80%;object-fit:contain">
+            <defs>
+              <linearGradient id="gourmetGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1a2a1a"/>
+                <stop offset="100%" stop-color="#0a1a0a"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="10" width="140" height="240" rx="12" fill="url(#gourmetGrad)"/>
+            <text x="90" y="65" font-family="serif" font-size="14" fill="#3ebfbf" text-anchor="middle" font-style="italic">Café</text>
+            <text x="90" y="90" font-family="serif" font-size="14" fill="#3ebfbf" text-anchor="middle" font-style="italic">Quindío</text>
+            <rect x="35" y="105" width="110" height="28" fill="#e8607a"/>
+            <text x="90" y="124" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold" letter-spacing="2">GOURMET</text>
+            <text x="90" y="175" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle">100% ARÁBICA · 454g</text>
+          </svg>
+        </div>
+        <div class="product-name">Café Gourmet</div>
+        <div class="product-price">Desde $31.800</div>
+        <div class="stars">★★★★★ <span style="color:#999;font-size:11px;">(5.0)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Launch / Mickey Set -->
+<section class="launch-section">
+  <div class="launch-inner">
+    <div>
+      <p class="launch-eyebrow">Lanzamiento</p>
+      <h2 class="launch-title">Set Chemex Inspirado<br>en Mickey</h2>
+      <div class="launch-badge">Edición Limitada</div>
+      <div class="launch-price">$299.000</div>
+      <p class="launch-desc">
+        El Set Chemex Mickey es una edición limitada que celebra el arte de preparar café con dedicación, tradición y detalle. Incluye una Chemex artesanal de cerámica, pintada a mano, de 400 ml, y un Café Cosecha Especial Honey de 125 g, proveniente de Circasia, Quindío, ideal para quienes disfrutan el ritual de preparar café.
+      </p>
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input class="qty-num" type="number" value="1" min="1" id="qty">
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-primary" style="width:100%;max-width:340px;">AÑADIR A LA CESTA</button>
+    </div>
+    <div>
+      <div class="launch-img-wrap">
+        <div class="launch-box">
+          <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Box outline -->
+            <rect x="10" y="10" width="260" height="260" rx="16" fill="white" stroke="#eee" stroke-width="1.5"/>
+            <!-- Corner decorations -->
+            <g fill="#3ebfbf" opacity="0.7">
+              <ellipse cx="40" cy="40" rx="6" ry="10" transform="rotate(-30 40 40)"/>
+              <ellipse cx="240" cy="40" rx="6" ry="10" transform="rotate(30 240 40)"/>
+              <ellipse cx="40" cy="240" rx="6" ry="10" transform="rotate(30 40 240)"/>
+              <ellipse cx="240" cy="240" rx="6" ry="10" transform="rotate(-30 240 240)"/>
+              <ellipse cx="55" cy="30" rx="5" ry="8" transform="rotate(-15 55 30)"/>
+              <ellipse cx="225" cy="30" rx="5" ry="8" transform="rotate(15 225 30)"/>
+              <ellipse cx="55" cy="250" rx="5" ry="8" transform="rotate(15 55 250)"/>
+              <ellipse cx="225" cy="250" rx="5" ry="8" transform="rotate(-15 225 250)"/>
+            </g>
+            <!-- Disney text -->
+            <text x="140" y="65" font-family="serif" font-size="14" fill="#888" text-anchor="middle">Disney</text>
+            <!-- Mickey Mouse text -->
+            <text x="140" y="92" font-family="serif" font-size="20" fill="#1a1a1a" text-anchor="middle" font-weight="bold">MICKEY</text>
+            <text x="140" y="116" font-family="serif" font-size="20" fill="#1a1a1a" text-anchor="middle" font-weight="bold">MOUSE</text>
+            <!-- Wreath -->
+            <g opacity="0.8">
+              <ellipse cx="140" cy="142" rx="52" ry="52" fill="none" stroke="#3ebfbf" stroke-width="0"/>
+              <!-- Mini leaves around -->
+              <ellipse cx="140" cy="96" rx="4" ry="8" fill="#3ebfbf"/>
+              <ellipse cx="160" cy="100" rx="3" ry="7" fill="#5ecfcf" transform="rotate(20 160 100)"/>
+              <ellipse cx="120" cy="100" rx="3" ry="7" fill="#5ecfcf" transform="rotate(-20 120 100)"/>
+              <ellipse cx="186" cy="124" rx="3" ry="7" fill="#3ebfbf" transform="rotate(70 186 124)"/>
+              <ellipse cx="188" cy="142" rx="3" ry="7" fill="#5ecfcf" transform="rotate(90 188 142)"/>
+              <ellipse cx="182" cy="162" rx="3" ry="7" fill="#3ebfbf" transform="rotate(110 182 162)"/>
+              <ellipse cx="160" cy="182" rx="3" ry="7" fill="#5ecfcf" transform="rotate(160 160 182)"/>
+              <ellipse cx="140" cy="188" rx="4" ry="8" fill="#3ebfbf" transform="rotate(180 140 188)"/>
+              <ellipse cx="120" cy="182" rx="3" ry="7" fill="#5ecfcf" transform="rotate(200 120 182)"/>
+              <ellipse cx="98" cy="162" rx="3" ry="7" fill="#3ebfbf" transform="rotate(250 98 162)"/>
+              <ellipse cx="92" cy="142" rx="3" ry="7" fill="#5ecfcf" transform="rotate(270 92 142)"/>
+              <ellipse cx="98" cy="122" rx="3" ry="7" fill="#3ebfbf" transform="rotate(290 98 122)"/>
+              <!-- Small flowers -->
+              <circle cx="175" cy="110" r="5" fill="#5ecfcf" opacity="0.6"/>
+              <circle cx="105" cy="110" r="5" fill="#5ecfcf" opacity="0.6"/>
+              <circle cx="175" cy="174" r="5" fill="#5ecfcf" opacity="0.6"/>
+              <circle cx="105" cy="174" r="5" fill="#5ecfcf" opacity="0.6"/>
+              <!-- Coffee beans -->
+              <ellipse cx="168" cy="118" rx="3" ry="5" fill="#c9a84c" transform="rotate(30 168 118)"/>
+              <ellipse cx="112" cy="118" rx="3" ry="5" fill="#c9a84c" transform="rotate(-30 112 118)"/>
+            </g>
+            <!-- Mickey silhouette -->
+            <circle cx="140" cy="142" r="26" fill="#c9a84c"/>
+            <circle cx="120" cy="122" r="16" fill="#c9a84c"/>
+            <circle cx="160" cy="122" r="16" fill="#c9a84c"/>
+            <!-- Mickey text -->
+            <text x="140" y="205" font-family="serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Mickey Mouse</text>
+            <text x="140" y="225" font-family="serif" font-size="9" fill="#c9a84c" text-anchor="middle" font-style="italic">Set de café</text>
+          </svg>
+        </div>
+      </div>
+      <div class="launch-thumbnails" style="justify-content:center;margin-top:20px;">
+        <div class="thumb active">
+          <svg viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="4" fill="#f5f5f0"/><circle cx="22" cy="22" r="8" fill="#c9a84c"/></svg>
+        </div>
+        <div class="thumb">
+          <svg viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="4" fill="#3ebfbf"/><text x="22" y="26" font-size="14" text-anchor="middle" fill="white">☕</text></svg>
+        </div>
+        <div class="thumb">
+          <svg viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="4" fill="#2a9090"/><text x="22" y="26" font-size="12" text-anchor="middle" fill="white">▣</text></svg>
+        </div>
+        <div class="thumb">
+          <svg viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="4" fill="#1a2a1a"/><text x="22" y="26" font-size="14" text-anchor="middle" fill="#c9a84c">Q</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <p class="newsletter-eyebrow">Regístrate en nuestro newsletter y obtén</p>
+  <h2 class="newsletter-title">Un código con 10% de descuento<br>en tu primera compra online</h2>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Correo electrónico" class="newsletter-input">
+    <button class="newsletter-btn">Suscribirse</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-social" style="padding-top:20px;">
+    <p style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#aaa;margin-bottom:16px;font-weight:500;">Síguenos</p>
+    <div class="footer-social-handle">@CAFEQUINDIO.CO</div>
+    <div class="social-icons">
+      <a href="#" class="social-icon">📸</a>
+      <a href="#" class="social-icon">f</a>
+      <a href="#" class="social-icon">in</a>
+      <a href="#" class="social-icon">♪</a>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="margin-bottom:16px;">Suscríbete a nuestro newsletter para recibir novedades</p>
+      <input type="email" placeholder="Correo electrónico" class="footer-newsletter-input">
+      <button class="footer-newsletter-btn">Suscribirse</button>
+    </div>
+    <div class="footer-col">
+      <h4>Café Quindío</h4>
+      <ul>
+        <li><a href="#">Nuestra Historia</a></li>
+        <li><a href="#">Nuestro Proceso</a></li>
+        <li><a href="#">Servicio al Cliente</a></li>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+        <li><a href="#">Blogs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Políticas</h4>
+      <ul>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Política de Reembolso</a></li>
+        <li><a href="#">Términos del Servicio</a></li>
+        <li><a href="#">Información Nutricional</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Café Quindío</h4>
+      <p>Café Quindío es más que una marca de café, es un emblema de la riqueza cultural y la tradición cafetera de Colombia. Originaria del departamento del Quindío, una de las regiones cafeteras más importantes del país, esta marca representa la pasión y el compromiso de generaciones de agricultores dedicados a cultivar y producir café de la más alta calidad.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">© 2026 - CAFÉ QUINDIO S.A.S</div>
+</footer>
+
+<script>
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById('qty');
+    const val = parseInt(input.value) + delta;
+    if (val >= 1) input.value = val;
+  }
+
+  // Thumbnail selection
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', function() {
+      document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Smooth scroll
+  document.querySelector('.hero-scroll').addEventListener('click', () => {
+    window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+  });
+
+  // Add to cart feedback
+  document.querySelectorAll('.btn-primary').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const orig = this.textContent;
+      this.textContent = '✓ AÑADIDO';
+      this.style.background = '#2aa070';
+      setTimeout(() => {
+        this.textContent = orig;
+        this.style.background = '';
+      }, 1800);
+    });
+  });
+</script>
+</body>
+</html>
