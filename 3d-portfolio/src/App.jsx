@@ -35,9 +35,6 @@ function App() {
   
   return (
     <div className="w-full min-h-screen bg-dark overflow-x-hidden">
-      {/* Canvas 3D de fondo */}
-      {activeSection === 'hero' && <Scene3D activeSection={activeSection} />}
-      
       {/* Navegación */}
       <Navigation />
       
@@ -48,7 +45,7 @@ function App() {
           {activeSection === 'hero' && <Scene3D activeSection={activeSection} />}
           <HeroSection />
         </section>
-        
+
         {/* About Section */}
         <section id="about">
           <AboutSection />
