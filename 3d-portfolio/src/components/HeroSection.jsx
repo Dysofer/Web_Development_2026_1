@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 export function HeroSection() {
   const [textIndex, setTextIndex] = useState(0)
-  const roles = ['Full-Stack Developer', 'Content Creator', 'Web Engineer']
+  const roles = ['FrontEnd Developer', 'Content Creator', 'Web Engineer']
   
   useEffect(() => {
     const timer = setInterval(() => {
