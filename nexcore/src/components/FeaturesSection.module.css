@@ -1,0 +1,101 @@
+.section {
+  min-height: 100vh;
+  padding: 8rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  max-width: 420px;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.title span {
+  -webkit-text-stroke: 1.5px var(--accent2);
+  color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  max-width: 860px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover {
+  border-color: var(--card-accent);
+  transform: translateY(-4px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--card-accent);
+}
+
+.cardTitle {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 5rem 1.5rem; }
+  .grid { grid-template-columns: 1fr 1fr; }
+}
