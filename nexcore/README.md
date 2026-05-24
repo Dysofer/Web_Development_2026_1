@@ -56,7 +56,7 @@ npm install
 npm run dev
 ```
 
-## 📦 Build para Producción
+## Build para Producción
 
 ```bash
 npm run build
