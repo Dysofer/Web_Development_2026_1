@@ -75,7 +75,7 @@ export default function ContactSection() {
             {
               icon: '◉',
               title: 'Línea directa',
-              desc: '+57 (1) 800-NEXCORE\nLunes a viernes · 8am – 6pm',
+              desc: '+57 3164842283\nLunes a viernes · 8am – 6pm',
               accent: 'var(--accent2)',
             },
             {

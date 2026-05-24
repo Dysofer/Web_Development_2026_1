@@ -18,7 +18,7 @@ export default function Navbar() {
         <li><a href="#buy">Buy</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
-      <a href="#buy" className={styles.cta}>Get Tanny</a>
+      <a href="#buy" className={styles.cta}>Obtener Tanny</a>
     </motion.nav>
   )
 }
