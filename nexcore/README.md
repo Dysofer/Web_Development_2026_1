@@ -5,7 +5,7 @@
 > Temática: **Tecnología** · Producto: Bocina inteligente **Tanny** de **NexCore**
 
 ## Demo
-[Ver en Vercel →](https://nexcore-tanny.vercel.app)
+[Ver en Vercel →](https://web-development-2026-1-xxul.vercel.app/)
 
 ## Concepto del Producto
 
