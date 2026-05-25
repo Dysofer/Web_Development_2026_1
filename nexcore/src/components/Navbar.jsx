@@ -13,9 +13,9 @@ export default function Navbar() {
         NEX<span>CORE</span>
       </a>
       <ul className={styles.links}>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#specs">Specs</a></li>
-        <li><a href="#buy">Buy</a></li>
+        <li><a href="#features">Características</a></li>
+        <li><a href="#specs">Especificaciones</a></li>
+        <li><a href="#buy">Comprar</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
       <a href="#buy" className={styles.cta}>Obtener Tanny</a>

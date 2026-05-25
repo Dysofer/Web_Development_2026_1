@@ -5,14 +5,14 @@ import styles from './BuySection.module.css'
 const PLANS = [
   {
     name: 'Tanny',
-    price: '680.000',
+    price: '649.000',
     tag: 'Estándar',
     features: ['8 drivers full-range', 'Wi-Fi 6 + Bluetooth 5.3', 'Matter + Thread', '3 acabados'],
     accent: 'var(--accent)',
   },
   {
     name: 'Tanny Pro',
-    price: '989.000',
+    price: '869.000',
     tag: 'Más popular',
     features: ['8 drivers + 2 tweeters', 'Wi-Fi 6E + BT 5.3', 'Matter + Thread + Zigbee', '4 acabados + custom'],
     accent: 'var(--accent2)',
